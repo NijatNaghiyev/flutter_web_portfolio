@@ -10,28 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+      - run: flutter pub get
 
-      - name: Create firebase_options.dart from secret
-        run: |
+      - run: |
           mkdir -p lib/app/config
           echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/app/config/firebase_options.dart
 
-      - name: Build Flutter Web
-        run: flutter build web --release
+      - run: echo "${{ secrets.FIREBASE_JSON }}" > firebase.json
 
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - run: flutter build web --release
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
