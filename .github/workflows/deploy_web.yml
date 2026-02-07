@@ -22,10 +22,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Generate firebase_options.dart from secret
+      - name: Create firebase_options.dart from secret
         run: |
           mkdir -p lib/app/config
-          echo "${{ secrets.FIREBASE_CONFIG }}" > lib/app/config/firebase_options.dart
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/app/config/firebase_options.dart
 
       - name: Build Flutter Web
         run: flutter build web --release
