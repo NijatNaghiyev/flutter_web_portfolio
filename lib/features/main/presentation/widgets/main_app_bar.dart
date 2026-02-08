@@ -29,9 +29,7 @@ class MainAppBar extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               hoverColor: Colors.transparent,
-              onTap: () {
-                web.window.location.reload();
-              },
+              onTap: () => web.window.location.reload(),
               child: Text(
                 '</> FlutterDev',
                 style: TextStyle(
