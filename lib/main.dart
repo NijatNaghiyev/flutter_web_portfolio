@@ -1,14 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/app.dart';
-import 'package:flutter_web_portfolio/app/config/firebase_options.dart';
+import 'package:flutter_web_portfolio/bootstrap.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  runApp(const App());
+void main() {
+  bootstrap(() => const App());
 }
