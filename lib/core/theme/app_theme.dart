@@ -26,6 +26,11 @@ class AppTheme {
         color: Colors.black87,
       ),
     ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(const Color(0xffB9D8F8)),
+      trackColor: WidgetStateProperty.all(Colors.transparent),
+      radius: const Radius.circular(8),
+    ),
     // colorScheme: const ColorScheme.light(
     //   primary: Colors.blue,
     //   secondary: Colors.blueAccent,
@@ -56,6 +61,11 @@ class AppTheme {
         fontSize: 16,
         color: Colors.white70,
       ),
+    ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(const Color(0xff214971)),
+      trackColor: WidgetStateProperty.all(Colors.transparent),
+      radius: const Radius.circular(8),
     ),
     // colorScheme: const ColorScheme.dark(
     //   primary: Colors.blue,

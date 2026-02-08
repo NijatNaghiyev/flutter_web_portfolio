@@ -27,5 +27,9 @@ class AppThemeCubit extends HydratedCubit<AppThemeState> {
     }
   }
 
-  void setTheme(AppThemeState theme) => emit(theme);
+  void setTheme(ThemeMode themeMode) => emit(switch (themeMode) {
+    ThemeMode.light => const AppThemeLight(),
+    ThemeMode.dark => const AppThemeDark(),
+    ThemeMode.system => const AppThemeSystem(),
+  });
 }
