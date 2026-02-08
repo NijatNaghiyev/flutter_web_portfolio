@@ -17,52 +17,55 @@ class _MainScreenState extends State<MainScreen> {
           const MainAppBar(),
         ],
 
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 300,
-                color: Colors.red,
-                child: const Center(
-                  child: Text('Section 1'),
+        body: Scrollbar(
+          thumbVisibility: true,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 300,
+                  color: Colors.red,
+                  child: const Center(
+                    child: Text('Section 1'),
+                  ),
                 ),
-              ),
-              Container(
-                height: 300,
-                color: Colors.green,
-                child: const Center(
-                  child: Text('Section 2'),
+                Container(
+                  height: 300,
+                  color: Colors.green,
+                  child: const Center(
+                    child: Text('Section 2'),
+                  ),
                 ),
-              ),
-              Container(
-                height: 300,
-                color: Colors.blue,
-                child: const Center(
-                  child: Text('Section 3'),
+                Container(
+                  height: 300,
+                  color: Colors.blue,
+                  child: const Center(
+                    child: Text('Section 3'),
+                  ),
                 ),
-              ),
-              Container(
-                height: 300,
-                color: Colors.red,
-                child: const Center(
-                  child: Text('Section 1'),
+                Container(
+                  height: 300,
+                  color: Colors.red,
+                  child: const Center(
+                    child: Text('Section 1'),
+                  ),
                 ),
-              ),
-              Container(
-                height: 300,
-                color: Colors.green,
-                child: const Center(
-                  child: Text('Section 2'),
+                Container(
+                  height: 300,
+                  color: Colors.green,
+                  child: const Center(
+                    child: Text('Section 2'),
+                  ),
                 ),
-              ),
-              Container(
-                height: 300,
-                color: Colors.blue,
-                child: const Center(
-                  child: Text('Section 3'),
+                Container(
+                  height: 300,
+                  color: Colors.blue,
+                  child: const Center(
+                    child: Text('Section 3'),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
