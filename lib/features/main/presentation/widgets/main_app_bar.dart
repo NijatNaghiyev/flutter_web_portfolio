@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
@@ -22,25 +24,29 @@ class MainAppBar extends StatelessWidget {
       pinned: true,
       scrolledUnderElevation: 100,
       toolbarHeight: 50,
-      backgroundColor: AppColors.getBackground(context).withValues(alpha: 0.8),
+      backgroundColor: AppColors.getBackground(context).withValues(alpha: 0.7),
       elevation: 12,
-      shadowColor: Colors.black.withValues(alpha: 0.1),
-      flexibleSpace: FlexibleSpaceBar(
-        expandedTitleScale: 1.2,
-        centerTitle: false,
-        titlePadding: const EdgeInsets.symmetric(horizontal: 12),
-        title: Row(
-          children: [
-            _buildProjectTitle(),
+      flexibleSpace: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: FlexibleSpaceBar(
+            expandedTitleScale: 1.2,
+            centerTitle: false,
+            titlePadding: const EdgeInsets.symmetric(horizontal: 12),
+            title: Row(
+              children: [
+                _buildProjectTitle(),
 
-            const Spacer(),
+                const Spacer(),
 
-            ?_buildSectionTitles(context),
+                ?_buildSectionTitles(context),
 
-            _themeModeButton(),
+                _themeModeButton(),
 
-            ?_buildHireMeButton(context),
-          ],
+                ?_buildHireMeButton(context),
+              ],
+            ),
+          ),
         ),
       ),
     );
