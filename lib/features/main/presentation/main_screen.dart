@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/main_app_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -22,6 +23,15 @@ class _MainScreenState extends State<MainScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                Container(
+                  height: 300,
+                  color: Colors.red,
+                  child: const Center(
+                    child: Text('Section 1'),
+                  ),
+                ),
+                Text(MediaQuery.of(context).size.width.toString()),
+                Text(context.breakPoint.toString()),
                 Container(
                   height: 300,
                   color: Colors.red,
