@@ -13,6 +13,8 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../../core/theme/cubit/app_theme_cubit.dart' as _i986;
+import '../../features/main/presentation/cubits/drawer/drawer_cubit.dart'
+    as _i386;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -21,6 +23,7 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i386.DrawerCubit>(() => _i386.DrawerCubit());
     gh.lazySingleton<_i986.AppThemeCubit>(() => _i986.AppThemeCubit());
     return this;
   }
