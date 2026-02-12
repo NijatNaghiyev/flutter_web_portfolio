@@ -8,59 +8,107 @@ import 'package:flutter_web_portfolio/core/extensions/string.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/theme/cubit/app_theme_cubit.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/hire_me_button.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/hovered_section_title.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/main_app_bar_drawer.dart';
 import 'package:web/web.dart' as web;
 
-class MainAppBar extends StatelessWidget {
+class MainAppBar extends StatefulWidget {
   const MainAppBar({
     super.key,
   });
 
   @override
+  State<MainAppBar> createState() => _MainAppBarState();
+}
+
+class _MainAppBarState extends State<MainAppBar> {
+  static const _title = '</> FlutterDev';
+
+  @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: 60,
-      pinned: true,
-      scrolledUnderElevation: 100,
-      toolbarHeight: 50,
-      backgroundColor: AppColors.getBackground(context).withValues(alpha: 0.7),
-      elevation: 12,
-      flexibleSpace: ClipRRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: FlexibleSpaceBar(
-            expandedTitleScale: 1.2,
-            centerTitle: false,
-            titlePadding: const EdgeInsets.symmetric(horizontal: 12),
-            title: Row(
-              children: [
-                _buildProjectTitle(),
-
-                const Spacer(),
-
-                ?_buildSectionTitles(context),
-
-                _themeModeButton(),
-
-                ?_buildHireMeButton(context),
-              ],
-            ),
+    return BlocBuilder<DrawerCubit, bool>(
+      builder: (context, state) {
+        return TweenAnimationBuilder(
+          tween: Tween<double>(
+            begin: 0,
+            end: context.isMobileOrTablet && state ? 1 : 0,
           ),
-        ),
-      ),
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+          builder: (context, value, _) {
+            final extraHeight = context.isMobileOrTablet ? 300 * value : 0.0;
+
+            return SliverAppBar(
+              automaticallyImplyActions: false,
+              expandedHeight: 60 + extraHeight,
+              pinned: true,
+              scrolledUnderElevation: 100,
+              toolbarHeight: 50 + extraHeight,
+              backgroundColor: AppColors.getBackground(
+                context,
+              ).withValues(alpha: 0.7),
+              elevation: 12,
+              flexibleSpace: Column(
+                // mainAxisSize:
+                //     ((context.isTablet || context.isMobile) ||
+                //         (value > 0 || state))
+                //     ? MainAxisSize.max
+                //     : MainAxisSize.min,
+                mainAxisAlignment: .end,
+                children: [
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: FlexibleSpaceBar(
+                        expandedTitleScale: 1.1,
+                        centerTitle: false,
+                        titlePadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                        ),
+                        title: Row(
+                          crossAxisAlignment: .end,
+                          children: [
+                            _buildProjectTitle(),
+
+                            const Spacer(),
+
+                            ?_buildSectionTitles(context),
+
+                            _themeModeButton(),
+
+                            ?_buildCornerButton(context),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (context.isMobileOrTablet && (value > 0 || state))
+                    const MainAppBarDrawer(),
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
-  Widget? _buildHireMeButton(BuildContext context) {
-    if (context.isDesktop || context.isDesktopSmall) {
+  Widget? _buildCornerButton(BuildContext context) {
+    if (context.isDesktopSmallOrDesktop) {
       return const Padding(
-        padding: EdgeInsets.only(left: 16),
+        padding: EdgeInsets.only(left: 16, bottom: 4),
         child: HireMeButton(),
       );
+    } else {
+      return IconButton(
+        icon: const Icon(Icons.dehaze_rounded),
+        onPressed: () {
+          context.read<DrawerCubit>().toggle();
+        },
+      );
     }
-
-    return null;
   }
 
   InkWell _buildProjectTitle() {
@@ -70,7 +118,7 @@ class MainAppBar extends StatelessWidget {
       hoverColor: Colors.transparent,
       onTap: () => web.window.location.reload(),
       child: Text(
-        '</> FlutterDev',
+        _title,
         style: AppTextStyle.projectTitle.copyWith(
           color: AppColors.primary,
         ),
@@ -79,7 +127,7 @@ class MainAppBar extends StatelessWidget {
   }
 
   Widget? _buildSectionTitles(BuildContext context) {
-    if (context.isDesktop || context.isDesktopSmall) {
+    if (context.isDesktopSmallOrDesktop) {
       return Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Row(

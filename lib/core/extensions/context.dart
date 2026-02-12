@@ -20,4 +20,7 @@ extension ContextBreakPoints on BuildContext {
   bool get isTablet => breakPoint == BreakPoint.tablet;
   bool get isDesktopSmall => breakPoint == BreakPoint.desktopSmall;
   bool get isDesktop => breakPoint == BreakPoint.desktop;
+
+  bool get isMobileOrTablet => isMobile || isTablet;
+  bool get isDesktopSmallOrDesktop => isDesktopSmall || isDesktop;
 }
