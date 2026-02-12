@@ -1,6 +1,6 @@
 enum BreakPoint {
   desktop(1200),
-  desktopSmall(832),
+  desktopSmall(840),
   tablet(600),
   mobile(0);
 
