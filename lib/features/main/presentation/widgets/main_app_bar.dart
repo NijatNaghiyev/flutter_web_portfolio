@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/theme/cubit/app_theme_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/hire_me_button.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/hovered_section_title.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/howered_buttons.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/main_app_bar_drawer.dart';
 import 'package:web/web.dart' as web;
 
@@ -51,11 +52,6 @@ class _MainAppBarState extends State<MainAppBar> {
               ).withValues(alpha: 0.7),
               elevation: 12,
               flexibleSpace: Column(
-                // mainAxisSize:
-                //     ((context.isTablet || context.isMobile) ||
-                //         (value > 0 || state))
-                //     ? MainAxisSize.max
-                //     : MainAxisSize.min,
                 mainAxisAlignment: .end,
                 children: [
                   ClipRRect(
@@ -65,7 +61,7 @@ class _MainAppBarState extends State<MainAppBar> {
                         expandedTitleScale: 1.1,
                         centerTitle: false,
                         titlePadding: const EdgeInsets.symmetric(
-                          horizontal: 12,
+                          horizontal: 16,
                         ),
                         title: Row(
                           crossAxisAlignment: .end,
@@ -105,6 +101,8 @@ class _MainAppBarState extends State<MainAppBar> {
       return IconButton(
         icon: const Icon(Icons.dehaze_rounded),
         onPressed: () {
+          HapticFeedback.lightImpact();
+
           context.read<DrawerCubit>().toggle();
         },
       );
@@ -116,7 +114,10 @@ class _MainAppBarState extends State<MainAppBar> {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
-      onTap: () => web.window.location.reload(),
+      onTap: () {
+        HapticFeedback.lightImpact();
+        web.window.location.reload();
+      },
       child: Text(
         _title,
         style: AppTextStyle.projectTitle.copyWith(
@@ -128,18 +129,7 @@ class _MainAppBarState extends State<MainAppBar> {
 
   Widget? _buildSectionTitles(BuildContext context) {
     if (context.isDesktopSmallOrDesktop) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 16),
-        child: Row(
-          spacing: 16,
-          children: [
-            HoveredSectionTitle(title: 'About', onTap: () {}),
-            HoveredSectionTitle(title: 'Skills', onTap: () {}),
-            HoveredSectionTitle(title: 'Projects', onTap: () {}),
-            HoveredSectionTitle(title: 'Contact', onTap: () {}),
-          ],
-        ),
-      );
+      return const HoveredButtons();
     }
 
     return null;
@@ -151,6 +141,9 @@ class _MainAppBarState extends State<MainAppBar> {
       builder: (context, state) {
         return PopupMenuButton(
           tooltip: 'Change Theme',
+          enableFeedback: true,
+          iconSize: 20,
+          padding: EdgeInsets.zero,
           icon: Icon(
             state.themeMode == ThemeMode.light
                 ? Icons.light_mode_outlined
@@ -162,6 +155,8 @@ class _MainAppBarState extends State<MainAppBar> {
                 (mode) => PopupMenuItem(
                   value: mode,
                   onTap: () {
+                    HapticFeedback.lightImpact();
+
                     getIt<AppThemeCubit>().setTheme(
                       mode,
                     );
