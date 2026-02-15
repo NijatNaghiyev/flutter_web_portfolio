@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
+import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/howered_buttons.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/lets_talk_button.dart';
 
 class MainAppBarDrawer extends StatelessWidget {
   const MainAppBarDrawer({
+    required this.height,
     super.key,
   });
+
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +27,23 @@ class MainAppBarDrawer extends StatelessWidget {
           curve: Curves.easeInOut,
           builder: (context, value, _) {
             return Container(
-              height: 300 * value,
+              height: 270 * value,
               width: double.infinity,
-              color: Colors.teal,
+              color: AppColors.getBackground(
+                context,
+              ).withValues(alpha: 0.7),
               child: Visibility(
                 visible: context.isMobileOrTablet && state && value == 1,
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    HoveredButtons(),
-                  ],
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: Column(
+                    spacing: 24,
+                    crossAxisAlignment: .start,
+                    children: [
+                      HoveredButtons(),
+                      LetsTalkButton(),
+                    ],
+                  ),
                 ),
               ),
             );
