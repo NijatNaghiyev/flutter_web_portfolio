@@ -15,7 +15,7 @@ class HireMeButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary.withValues(alpha: 0.5),
-            blurRadius: 8,
+            blurRadius: 16,
             offset: const Offset(0, 4),
           ),
         ],

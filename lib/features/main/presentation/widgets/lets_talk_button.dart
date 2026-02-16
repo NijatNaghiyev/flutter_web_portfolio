@@ -17,7 +17,7 @@ class LetsTalkButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary.withValues(alpha: 0.5),
-            blurRadius: 8,
+            blurRadius: 16,
             offset: const Offset(0, 4),
           ),
         ],
@@ -27,7 +27,7 @@ class LetsTalkButton extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Let\'s Talk',
+        "Let's Talk",
         style: AppTextStyle.smallMuted.copyWith(
           color: AppColors.lightMuted,
         ),

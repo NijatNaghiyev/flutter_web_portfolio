@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
+import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/header_main.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/main_app_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,6 +26,9 @@ class _MainScreenState extends State<MainScreen> {
     return BlocProvider<DrawerCubit>(
       create: (context) => getIt<DrawerCubit>(),
       child: Scaffold(
+        backgroundColor: AppColors.getBackground(
+          context,
+        ),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) =>
               _buildHeaderSliver,
@@ -32,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const HeaderMain(),
                   Container(
                     height: 300,
                     color: Colors.red,
