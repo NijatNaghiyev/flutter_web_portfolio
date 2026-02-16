@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 
-class HireMeButton extends StatelessWidget {
-  const HireMeButton({super.key});
+class LetsTalkButton extends StatelessWidget {
+  const LetsTalkButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      width: double.infinity,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.circular(16),
@@ -25,7 +27,7 @@ class HireMeButton extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Hire Me',
+        "Let's Talk",
         style: AppTextStyle.smallMuted.copyWith(
           color: AppColors.lightMuted,
         ),

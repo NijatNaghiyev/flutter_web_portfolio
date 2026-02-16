@@ -26,6 +26,7 @@ class MainAppBar extends StatefulWidget {
 
 class _MainAppBarState extends State<MainAppBar> {
   static const _title = '</> FlutterDev';
+  static const double _drawerHeight = 270;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,9 @@ class _MainAppBarState extends State<MainAppBar> {
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOut,
           builder: (context, value, _) {
-            final extraHeight = context.isMobileOrTablet ? 300 * value : 0.0;
+            final extraHeight = context.isMobileOrTablet
+                ? _drawerHeight * value
+                : 0.0;
 
             return SliverAppBar(
               automaticallyImplyActions: false,
@@ -49,7 +52,7 @@ class _MainAppBarState extends State<MainAppBar> {
               toolbarHeight: 50 + extraHeight,
               backgroundColor: AppColors.getBackground(
                 context,
-              ).withValues(alpha: 0.7),
+              ),
               elevation: 12,
               flexibleSpace: Column(
                 mainAxisAlignment: .end,
@@ -81,7 +84,9 @@ class _MainAppBarState extends State<MainAppBar> {
                     ),
                   ),
                   if (context.isMobileOrTablet && (value > 0 || state))
-                    const MainAppBarDrawer(),
+                    const MainAppBarDrawer(
+                      height: _drawerHeight,
+                    ),
                 ],
               ),
             );
