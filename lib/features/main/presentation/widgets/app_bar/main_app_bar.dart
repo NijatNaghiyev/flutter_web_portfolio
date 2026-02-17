@@ -10,9 +10,9 @@ import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/theme/cubit/app_theme_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/hire_me_button.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/howered_buttons.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/main_app_bar_drawer.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/hire_me_button.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/howered_buttons.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/main_app_bar_drawer.dart';
 import 'package:web/web.dart' as web;
 
 class MainAppBar extends StatefulWidget {
@@ -46,19 +46,19 @@ class _MainAppBarState extends State<MainAppBar> {
 
             return SliverAppBar(
               automaticallyImplyActions: false,
-              expandedHeight: 60 + extraHeight,
+              expandedHeight: 64 + extraHeight,
               pinned: true,
               scrolledUnderElevation: 100,
               toolbarHeight: 50 + extraHeight,
               backgroundColor: AppColors.getBackground(
                 context,
-              ),
+              ).withValues(alpha: 0.7),
               elevation: 12,
-              flexibleSpace: Column(
-                mainAxisAlignment: .end,
-                children: [
-                  ClipRRect(
-                    child: BackdropFilter(
+              flexibleSpace: ClipRRect(
+                child: Column(
+                  mainAxisAlignment: .end,
+                  children: [
+                    BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                       child: FlexibleSpaceBar(
                         expandedTitleScale: 1.1,
@@ -66,28 +66,31 @@ class _MainAppBarState extends State<MainAppBar> {
                         titlePadding: const EdgeInsets.symmetric(
                           horizontal: 16,
                         ),
-                        title: Row(
-                          crossAxisAlignment: .end,
-                          children: [
-                            _buildProjectTitle(),
-
-                            const Spacer(),
-
-                            ?_buildSectionTitles(context),
-
-                            _themeModeButton(),
-
-                            ?_buildCornerButton(context),
-                          ],
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 4),
+                          child: Row(
+                            crossAxisAlignment: .end,
+                            children: [
+                              _buildProjectTitle(),
+                          
+                              const Spacer(),
+                          
+                              ?_buildSectionTitles(context),
+                          
+                              _themeModeButton(),
+                          
+                              ?_buildCornerButton(context),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  if (context.isMobileOrTablet && (value > 0 || state))
-                    const MainAppBarDrawer(
-                      height: _drawerHeight,
-                    ),
-                ],
+                    if (context.isMobileOrTablet && (value > 0 || state))
+                      const MainAppBarDrawer(
+                        height: _drawerHeight,
+                      ),
+                  ],
+                ),
               ),
             );
           },
@@ -147,7 +150,7 @@ class _MainAppBarState extends State<MainAppBar> {
         return PopupMenuButton(
           tooltip: 'Change Theme',
           enableFeedback: true,
-          iconSize: 20,
+          iconSize: 24,
           padding: EdgeInsets.zero,
           icon: Icon(
             state.themeMode == ThemeMode.light

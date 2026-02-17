@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/hovered_section_title.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/hovered_section_title.dart';
 
 class HoveredButtons extends StatelessWidget {
   const HoveredButtons({

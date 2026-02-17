@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   equatable: ^2.0.8
   uuid: ^4.5.2
+  flutter_svg: ^2.2.3
 
 
 dev_dependencies:
@@ -57,6 +58,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/svgs/
 
   fonts:
     - family: Inter
