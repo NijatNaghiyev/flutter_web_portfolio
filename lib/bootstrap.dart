@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/config/firebase_options.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 /// Bootstrap function to initialize the app
@@ -32,6 +33,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   if (kDebugMode) {
     log('✅ Bootstrap completed successfully');
   }
+
+  await getIt<AnalyticsService>().setUserId();
 
   // Run the app
   runApp(await builder());
