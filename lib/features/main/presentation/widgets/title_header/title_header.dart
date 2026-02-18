@@ -37,11 +37,9 @@ class TitleHeader extends StatelessWidget {
           ShaderMask(
             shaderCallback: (bounds) => const LinearGradient(
               colors: [AppColors.primary, Color(0xFF1EB2A5)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
             ).createShader(bounds),
             child: Text(
-              'Mobile Experiences',
+              'Cross-Platform Experiences',
               style: AppTextStyle.sectionTitle.copyWith(
                 fontSize: 58,
                 color: Colors.white,
@@ -55,7 +53,7 @@ class TitleHeader extends StatelessWidget {
           Text(
             "I specialize in creating high-performance, cross-platform applications using Flutter and Dart. Let's turn your ideas into reality.",
             style: AppTextStyle.bodyBase.copyWith(
-              color:  AppColors.getForeground(context).withValues(alpha: 0.7),
+              color: AppColors.getForeground(context).withValues(alpha: 0.7),
             ),
           ),
 
