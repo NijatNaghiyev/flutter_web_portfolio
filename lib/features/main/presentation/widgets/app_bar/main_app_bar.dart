@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
@@ -72,13 +71,13 @@ class _MainAppBarState extends State<MainAppBar> {
                             crossAxisAlignment: .end,
                             children: [
                               _buildProjectTitle(),
-                          
+
                               const Spacer(),
-                          
+
                               ?_buildSectionTitles(context),
-                          
+
                               _themeModeButton(),
-                          
+
                               ?_buildCornerButton(context),
                             ],
                           ),
@@ -109,8 +108,6 @@ class _MainAppBarState extends State<MainAppBar> {
       return IconButton(
         icon: const Icon(Icons.dehaze_rounded),
         onPressed: () {
-          HapticFeedback.lightImpact();
-
           context.read<DrawerCubit>().toggle();
         },
       );
@@ -123,7 +120,6 @@ class _MainAppBarState extends State<MainAppBar> {
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
       onTap: () {
-        HapticFeedback.lightImpact();
         web.window.location.reload();
       },
       child: Text(
@@ -163,8 +159,6 @@ class _MainAppBarState extends State<MainAppBar> {
                 (mode) => PopupMenuItem(
                   value: mode,
                   onTap: () {
-                    HapticFeedback.lightImpact();
-
                     getIt<AppThemeCubit>().setTheme(
                       mode,
                     );

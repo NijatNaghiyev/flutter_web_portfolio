@@ -18,9 +18,12 @@ class _HeaderImageState extends State<HeaderImage> {
       tween: Tween<double>(begin: 0, end: 1),
       curve: Curves.easeOut,
       builder: (context, value, child) {
-        return Transform.scale(
-          scale: value,
-          child: child,
+        return Opacity(
+          opacity: value,
+          child: Transform.scale(
+            scale: value,
+            child: child,
+          ),
         );
       },
       child: Padding(
