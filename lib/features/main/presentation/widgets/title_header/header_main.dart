@@ -9,7 +9,7 @@ class HeaderMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 48),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 48),
       child: Row(
         spacing: 36,
         mainAxisAlignment: .spaceBetween,
