@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/hovered_section_title.dart';
 
@@ -21,27 +20,19 @@ class HoveredButtons extends StatelessWidget {
         children: [
           HoveredSectionTitle(
             title: 'About',
-            onTap: () {
-              HapticFeedback.lightImpact();
-            },
+            onTap: () {},
           ),
           HoveredSectionTitle(
             title: 'Skills',
-            onTap: () {
-              HapticFeedback.lightImpact();
-            },
+            onTap: () {},
           ),
           HoveredSectionTitle(
             title: 'Projects',
-            onTap: () {
-              HapticFeedback.lightImpact();
-            },
+            onTap: () {},
           ),
           HoveredSectionTitle(
             title: 'Contact',
-            onTap: () {
-              HapticFeedback.lightImpact();
-            },
+            onTap: () {},
           ),
         ],
       ),

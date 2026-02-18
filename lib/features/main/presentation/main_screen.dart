@@ -5,8 +5,9 @@ import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/about_me/about_me_section.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/widgets/title_header/header_main.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/main_app_bar.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/my_skills/my_skills_section.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/title_header/header_main.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -40,6 +41,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   const HeaderMain(),
                   const AboutMeSection(),
+                  const MySkillsSection(),
                   Container(
                     height: 300,
                     color: Colors.red,
