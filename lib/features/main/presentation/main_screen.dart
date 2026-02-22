@@ -31,69 +31,75 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: AppColors.getBackground(
           context,
         ),
-        body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) =>
-              _buildHeaderSliver,
-          body: Scrollbar(
-            thumbVisibility: true,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const HeaderMain(),
-                  const AboutMeSection(),
-                  const MySkillsSection(),
-                  Container(
-                    height: 300,
-                    color: Colors.red,
-                    child: const Center(
-                      child: Text('Section 1'),
+        body: ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(
+            overscroll: false,
+          ),
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) =>
+                _buildHeaderSliver,
+            body: Scrollbar(
+              thumbVisibility: true,
+              child: SingleChildScrollView(
+                primary: true,
+                child: Column(
+                  children: [
+                    const HeaderMain(),
+                    const AboutMeSection(),
+                    const MySkillsSection(),
+                    Container(
+                      height: 300,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text('Section 1'),
+                      ),
                     ),
-                  ),
-                  Text(MediaQuery.of(context).size.width.toString()),
-                  Text(context.breakPoint.toString()),
-                  Container(
-                    height: 300,
-                    color: Colors.red,
-                    child: const Center(
-                      child: Text('Section 1'),
+                    Text(MediaQuery.of(context).size.width.toString()),
+                    Text(context.breakPoint.toString()),
+                    Container(
+                      height: 300,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text('Section 1'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.green,
-                    child: const Center(
-                      child: Text('Section 2'),
+                    Container(
+                      height: 300,
+                      color: Colors.green,
+                      child: const Center(
+                        child: Text('Section 2'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.blue,
-                    child: const Center(
-                      child: Text('Section 3'),
+                    Container(
+                      height: 300,
+                      color: Colors.blue,
+                      child: const Center(
+                        child: Text('Section 3'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.red,
-                    child: const Center(
-                      child: Text('Section 1'),
+                    Container(
+                      height: 300,
+                      color: Colors.red,
+                      child: const Center(
+                        child: Text('Section 1'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.green,
-                    child: const Center(
-                      child: Text('Section 2'),
+                    Container(
+                      height: 300,
+                      color: Colors.green,
+                      child: const Center(
+                        child: Text('Section 2'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    color: Colors.blue,
-                    child: const Center(
-                      child: Text('Section 3'),
+                    Container(
+                      height: 300,
+                      color: Colors.blue,
+                      child: const Center(
+                        child: Text('Section 3'),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/const/app_size.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/extensions/string.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
@@ -25,7 +26,6 @@ class MainAppBar extends StatefulWidget {
 
 class _MainAppBarState extends State<MainAppBar> {
   static const _title = '</> FlutterDev';
-  static const double _drawerHeight = 270;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _MainAppBarState extends State<MainAppBar> {
           curve: Curves.easeInOut,
           builder: (context, value, _) {
             final extraHeight = context.isMobileOrTablet
-                ? _drawerHeight * value
+                ? AppSize.drawerHeight * value
                 : 0.0;
 
             return SliverAppBar(
@@ -86,7 +86,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     ),
                     if (context.isMobileOrTablet && (value > 0 || state))
                       const MainAppBarDrawer(
-                        height: _drawerHeight,
+                        height: AppSize.drawerHeight,
                       ),
                   ],
                 ),

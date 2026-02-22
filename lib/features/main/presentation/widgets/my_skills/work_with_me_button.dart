@@ -17,9 +17,7 @@ class _WorkWithMeButtonState extends State<WorkWithMeButton> {
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: TextButton(
-        onPressed: () {
-          print('Work with me');
-        },
+        onPressed: () {},
         onHover: (hovering) {
           setState(() {
             isHovered = hovering;
