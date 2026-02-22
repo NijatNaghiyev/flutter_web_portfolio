@@ -27,27 +27,30 @@ class _ViewMyWorkState extends State<ViewMyWork> {
       child: AnimatedScale(
         duration: const Duration(milliseconds: 200),
         scale: isHovered ? 1.08 : 1.0,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.5),
-                blurRadius: 16,
-                offset: const Offset(0, 4),
+        child: GestureDetector(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.5),
+                  blurRadius: 16,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+              border: Border.all(
+                color: AppColors.lightBorder,
+                width: 2,
               ),
-            ],
-            border: Border.all(
-              color: AppColors.lightBorder,
-              width: 2,
             ),
-          ),
-          child: Text(
-            'View My Work',
-            style: AppTextStyle.bodyBase.copyWith(
-              color: AppColors.lightMuted,
+            child: Text(
+              'View My Work',
+              style: AppTextStyle.bodyBase.copyWith(
+                color: AppColors.lightMuted,
+              ),
             ),
           ),
         ),
