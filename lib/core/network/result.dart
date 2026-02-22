@@ -13,9 +13,8 @@ final class Success<T> extends Result<T> {
 /// Failure state with error message and optional exception
 final class Failure<T> extends Result<T> {
   final String message;
-  final Exception? exception;
 
-  const Failure(this.message, [this.exception]);
+  const Failure(this.message);
 }
 
 /// Extension methods for Result
@@ -41,9 +40,8 @@ extension ResultExtension<T> on Result<T> {
   /// Map the success value to another type
   Result<R> map<R>(R Function(T data) transform) => switch (this) {
     Success(data: final data) => Success(transform(data)),
-    Failure(message: final message, exception: final exception) => Failure(
+    Failure(message: final message) => Failure(
       message,
-      exception,
     ),
   };
 
@@ -53,17 +51,16 @@ extension ResultExtension<T> on Result<T> {
     required R Function(String message, Exception? exception) failure,
   }) => switch (this) {
     Success(data: final data) => success(data),
-    Failure(message: final message, exception: final exception) => failure(
-      message,
-      exception,
-    ),
+    Failure(
+      message: final message,
+    ) =>
+      failure(message, null),
   };
 
   /// Get the data or throw an exception
   T getOrThrow() => switch (this) {
     Success(data: final data) => data,
-    Failure(message: final message, exception: final exception) =>
-      throw exception ?? Exception(message),
+    Failure(message: final message) => throw Exception(message),
   };
 
   /// Get the data or return a default value
