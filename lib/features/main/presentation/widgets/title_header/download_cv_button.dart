@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
+import 'package:web/web.dart' as web;
 
 class DownloadCvButton extends StatelessWidget {
   const DownloadCvButton({super.key});
@@ -8,7 +9,7 @@ class DownloadCvButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       hoverColor: AppColors.getMuted(context),
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -38,6 +39,16 @@ class DownloadCvButton extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void onTap() {
+    // Header
+    //Content-Type: application/pdf
+    //Content-Disposition: inline; filename="Nijat_CV.pdf"
+    web.window.open(
+      'https://api.yoursite.com/cv',
+      '_blank',
     );
   }
 }
