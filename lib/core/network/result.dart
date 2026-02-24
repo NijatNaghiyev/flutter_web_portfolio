@@ -48,13 +48,13 @@ extension ResultExtension<T> on Result<T> {
   /// Execute different callbacks based on the result
   R when<R>({
     required R Function(T data) success,
-    required R Function(String message, Exception? exception) failure,
+    required R Function(String message) failure,
   }) => switch (this) {
     Success(data: final data) => success(data),
     Failure(
       message: final message,
     ) =>
-      failure(message, null),
+      failure(message),
   };
 
   /// Get the data or throw an exception

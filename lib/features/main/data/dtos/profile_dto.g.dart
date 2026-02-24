@@ -10,4 +10,5 @@ ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => ProfileDto(
   cvPath: json['cvPath'] as String?,
   github: json['github'] as String?,
   linkedin: json['linkedin'] as String?,
+  email: json['email'] as String?,
 );

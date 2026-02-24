@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/const/app_assets.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
+import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
+import 'package:flutter_web_portfolio/core/utils/url_helper.dart';
 import 'package:flutter_web_portfolio/core/widgets/icon_button.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/cubits/cv_download/cv_download_cubit.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/title_header/download_cv_button.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/title_header/view_my_work.dart';
 
@@ -82,11 +88,14 @@ class TitleHeader extends StatelessWidget {
             const SizedBox(
               height: 36,
             ),
-            const Row(
+            Row(
               spacing: 16,
               children: [
-                ViewMyWork(),
-                DownloadCvButton(),
+                const ViewMyWork(),
+                BlocProvider(
+                  create: (context) => getIt<CvDownloadCubit>(),
+                  child: const DownloadCvButton(),
+                ),
               ],
             ),
 
@@ -97,13 +106,31 @@ class TitleHeader extends StatelessWidget {
             Row(
               spacing: 16,
               children: [
-                IcButton(icon: AppAssets.githubIcon, onTap: () {}),
-                IcButton(icon: AppAssets.linkedinIcon, onTap: () {}),
+                IcButton(
+                  icon: AppAssets.githubIcon,
+                  onTap: () => openUrl(
+                    context.read<MainCubit>().state.profile?.github,
+                  ),
+                ),
+                IcButton(
+                  icon: AppAssets.linkedinIcon,
+                  onTap: () => openUrl(
+                    context.read<MainCubit>().state.profile?.linkedin,
+                  ),
+                ),
               ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  void openUrl(String? url) {
+    if (url == null) {
+      AppLogger.warning('URL is null', stackTrace: StackTrace.current);
+      return;
+    }
+    getIt<UrlHelper>().openUrl(url);
   }
 }

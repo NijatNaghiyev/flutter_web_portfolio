@@ -8,11 +8,13 @@ class ProfileDto {
   final String? cvPath;
   final String? github;
   final String? linkedin;
+  final String? email;
 
   ProfileDto({
     this.cvPath,
     this.github,
     this.linkedin,
+    this.email,
   });
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +25,7 @@ class ProfileDto {
       cvPath: cvPath,
       github: github,
       linkedin: linkedin,
+      email: email,
     );
   }
 }

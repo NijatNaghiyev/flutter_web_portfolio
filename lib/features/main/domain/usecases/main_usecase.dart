@@ -12,4 +12,8 @@ class MainUsecase {
   Future<Result<ProfileEntity>> getProfile() {
     return _mainRepository.getProfile();
   }
+
+  Future<Result<String>> getCvDownloadPath(String path) {
+    return _mainRepository.getCvDownloadPath(path);
+  }
 }

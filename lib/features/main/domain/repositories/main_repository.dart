@@ -3,4 +3,5 @@ import 'package:flutter_web_portfolio/features/main/domain/entities/profile_enti
 
 abstract class MainRepository {
   Future<Result<ProfileEntity>> getProfile();
+  Future<Result<String>> getCvDownloadPath(String path);
 }

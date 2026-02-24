@@ -12,8 +12,19 @@ class MainRepositoryImpl implements MainRepository {
   @override
   Future<Result<ProfileEntity>> getProfile() async {
     try {
-      final res =await  _mainDs.getProfile();
+      final res = await _mainDs.getProfile();
       return Success(res.toEntity());
+    } catch (e) {
+      return Failure(e.toString());
+    }
+  }
+
+  @override
+  Future<Result<String>> getCvDownloadPath(String path) async {
+    try {
+      final res = await _mainDs.getCvDownloadPath(path);
+
+      return Success(res);
     } catch (e) {
       return Failure(e.toString());
     }
