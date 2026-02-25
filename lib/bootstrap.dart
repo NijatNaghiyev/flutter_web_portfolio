@@ -23,8 +23,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
-
   // Initialize HydratedBloc storage
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory.web,
@@ -35,16 +33,25 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await getIt<AppCheckService>().initialize();
 
-
   AppLogger.success('Bootstrap completed successfully');
 
   await getIt<AnalyticsService>().setUserId();
 
   await getIt<AuthenticationService>().signInAnonymously();
 
-
   // Run the app
-  runApp(await builder());
+  await runZonedGuarded(
+    () async {
+      runApp(await builder());
+    },
+    zoneValues: {
+      #myKey: 'myValue',
+    },
+    (error, stack) => AppLogger.error(
+      'Uncaught error in runZonedGuarded: $error',
+      stackTrace: stack,
+    ),
+  );
 }
 
 /// Bloc observer for debugging
