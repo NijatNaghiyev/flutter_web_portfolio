@@ -14,16 +14,18 @@ class UrlHelper {
         mode: LaunchMode.externalApplication,
       );
     } else {
-      AppLogger.warning('Could not launch $uri');
+      AppLogger.warning(
+        'Could not launch $uri',
+        stackTrace: StackTrace.current,
+      );
     }
   }
 
   void downloadFile(String url, {String? fileName}) {
-    web.HTMLAnchorElement()
-      ..href = url
-      ..target = '_blank'
-      ..download = fileName ?? 'file.docx'
-      ..click()
-      ..remove();
+    try {
+      web.window.location.href = url;
+    } catch (e, s) {
+      AppLogger.error('Error downloading file from $url: $e', stackTrace: s);
+    }
   }
 }

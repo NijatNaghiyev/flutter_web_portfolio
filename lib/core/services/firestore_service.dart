@@ -5,9 +5,8 @@ import 'package:injectable/injectable.dart';
 /// Main service for Firebase Cloud Firestore operations
 @lazySingleton
 class FirestoreService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   FirestoreService();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// Get a single document by ID
   Future<Map<String, dynamic>?> getDocument({
@@ -21,8 +20,11 @@ class FirestoreService {
         return doc.data();
       }
       return null;
-    } catch (e) {
-      AppLogger.error('Error getting document from $collection: $e');
+    } catch (e, s) {
+      AppLogger.error(
+        'Error getting document from $collection: $e',
+        stackTrace: s,
+      );
       rethrow;
     }
   }
