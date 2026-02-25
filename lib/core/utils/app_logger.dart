@@ -12,7 +12,7 @@ class AppLogger {
       dev.log('❌ $message', stackTrace: stackTrace);
     } else {
       getIt<AnalyticsService>().logEvent(
-        name: 'error',
+        name: '❌ Error Custom log',
         parameters: {'message': message, 'stackTrace': stackTrace.toString()},
       );
     }
@@ -24,7 +24,7 @@ class AppLogger {
       dev.log('✅ $message', stackTrace: stackTrace);
     } else {
       getIt<AnalyticsService>().logEvent(
-        name: 'success',
+        name: '✅ Success Custom log',
         parameters: {'message': message, 'stackTrace': stackTrace.toString()},
       );
     }
@@ -36,7 +36,7 @@ class AppLogger {
       dev.log('ℹ️ $message', stackTrace: stackTrace);
     } else {
       getIt<AnalyticsService>().logEvent(
-        name: 'info',
+        name: 'ℹ️ Info Custom log',
         parameters: {'message': message, 'stackTrace': stackTrace.toString()},
       );
     }
@@ -48,7 +48,7 @@ class AppLogger {
       dev.log('⚠️ $message', stackTrace: stackTrace);
     } else {
       getIt<AnalyticsService>().logEvent(
-        name: 'warning',
+        name: '⚠️ Warning Custom log',
         parameters: {'message': message, 'stackTrace': stackTrace.toString()},
       );
     }
