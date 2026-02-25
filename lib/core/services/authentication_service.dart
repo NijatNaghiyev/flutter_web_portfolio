@@ -22,12 +22,13 @@ class AuthenticationService {
       AppLogger.info(
         'Signed in anonymously with UID: ${_firebaseAuth.currentUser?.uid}',
       );
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e, s) {
       AppLogger.error(
         'FirebaseAuthException during sign-in: ${e.code} - ${e.message}',
+        stackTrace: s,
       );
-    } catch (e) {
-      AppLogger.error('Error signing in anonymously: $e');
+    } catch (e, s) {
+      AppLogger.error('Error signing in anonymously: $e', stackTrace: s);
     }
   }
 }

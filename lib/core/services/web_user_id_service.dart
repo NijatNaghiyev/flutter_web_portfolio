@@ -1,3 +1,4 @@
+import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 import 'package:web/web.dart';
@@ -10,15 +11,25 @@ class WebUserId {
 
   /// Gets or creates a unique user ID stored in local storage
   String get() {
-    final storage = window.localStorage;
-
-    final existingId = storage.getItem(_storageKey);
-    if (existingId != null) {
-      return existingId;
-    }
-
     final newId = _uuid.v4();
-    storage.setItem(_storageKey, newId);
-    return newId;
+
+    try {
+      final storage = window.localStorage;
+
+      final existingId = storage.getItem(_storageKey);
+      if (existingId != null) {
+        return existingId;
+      }
+
+      storage.setItem(_storageKey, newId);
+      return newId;
+    } catch (e, s) {
+      AppLogger.error(
+        'Error accessing local storage for WebUserId: $e',
+        stackTrace: s,
+      );
+
+      return newId;
+    }
   }
 }

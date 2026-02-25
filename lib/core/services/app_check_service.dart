@@ -15,8 +15,11 @@ class AppCheckService {
       );
 
       AppLogger.info('Firebase App Check initialized successfully');
-    } catch (e) {
-      AppLogger.error('Error initializing Firebase App Check: $e');
+    } catch (e, s) {
+      AppLogger.error(
+        'Error initializing Firebase App Check: $e',
+        stackTrace: s,
+      );
     }
   }
 }

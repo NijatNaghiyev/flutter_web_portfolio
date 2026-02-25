@@ -7,9 +7,8 @@ import 'package:injectable/injectable.dart';
 /// Main service for Firebase Storage operations
 @lazySingleton
 class StorageService {
-  final FirebaseStorage _storage = FirebaseStorage.instance;
-
   StorageService();
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   /// Get download URL for a file
   Future<String?> getDownloadUrl({required String path}) async {
@@ -36,8 +35,8 @@ class StorageService {
 
       AppLogger.success('File downloaded successfully from $path');
       return data;
-    } catch (e) {
-      AppLogger.error('Error downloading file from $path: $e');
+    } catch (e, s) {
+      AppLogger.error('Error downloading file from $path: $e', stackTrace: s);
       rethrow;
     }
   }
