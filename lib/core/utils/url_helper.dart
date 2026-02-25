@@ -18,10 +18,12 @@ class UrlHelper {
     }
   }
 
-  void downloadFile(String url) {
+  void downloadFile(String url, {String? fileName}) {
     web.HTMLAnchorElement()
       ..href = url
-      ..target = 'blank'
-      ..click();
+      ..target = '_blank'
+      ..download = fileName ?? 'file.docx'
+      ..click()
+      ..remove();
   }
 }

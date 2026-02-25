@@ -8,10 +8,11 @@ import 'package:flutter_web_portfolio/core/utils/url_helper.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/cv_download/cv_download_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/cv_download/cv_download_state.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DownloadCvButton extends StatelessWidget {
   const DownloadCvButton({super.key});
+
+  static const String fileName = 'Nijat_Naghiyev_CV.pdf';
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,6 @@ class DownloadCvButton extends StatelessWidget {
   }
 
   Future<void> launchCv(String cvDownloadPath) async {
-    getIt<UrlHelper>().downloadFile(cvDownloadPath);
+    getIt<UrlHelper>().downloadFile(cvDownloadPath, fileName: fileName);
   }
 }
