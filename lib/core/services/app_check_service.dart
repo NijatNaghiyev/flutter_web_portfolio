@@ -2,7 +2,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@injectable
 class AppCheckService {
   final FirebaseAppCheck _appCheck = FirebaseAppCheck.instance;
 

@@ -23,7 +23,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await getIt<AppCheckService>().initialize();
 
 
   // Initialize HydratedBloc storage
@@ -33,6 +32,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   // Configure dependency injection
   configureDependencies();
+
+  await getIt<AppCheckService>().initialize();
+
 
   AppLogger.success('Bootstrap completed successfully');
 

@@ -39,10 +39,10 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i170.AppCheckService>(() => _i170.AppCheckService());
     gh.factory<_i386.DrawerCubit>(() => _i386.DrawerCubit());
     gh.singleton<_i963.ScrollService>(() => _i963.ScrollService());
     gh.singleton<_i749.WebUserId>(() => _i749.WebUserId());
-    gh.lazySingleton<_i170.AppCheckService>(() => _i170.AppCheckService());
     gh.lazySingleton<_i307.FirestoreService>(() => _i307.FirestoreService());
     gh.lazySingleton<_i54.StorageService>(() => _i54.StorageService());
     gh.lazySingleton<_i986.AppThemeCubit>(() => _i986.AppThemeCubit());
