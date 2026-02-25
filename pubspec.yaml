@@ -24,6 +24,8 @@ dependencies:
   firebase_analytics: ^12.1.2
   cloud_firestore: ^6.1.2
   firebase_storage: ^13.0.6
+  firebase_auth: ^6.1.4
+  firebase_app_check: ^0.4.1+4
 
   # Navigation
   go_router: ^17.1.0
@@ -58,7 +60,7 @@ dev_dependencies:
 
   # Linting
   flutter_lints: ^6.0.0
-  very_good_analysis: ^10.1.0
+  very_good_analysis: ^10.2.0
 
 flutter:
   uses-material-design: true

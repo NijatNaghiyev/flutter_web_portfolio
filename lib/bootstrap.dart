@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/config/firebase_options.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
+import 'package:flutter_web_portfolio/core/services/app_check_service.dart';
+import 'package:flutter_web_portfolio/core/services/authentication_service.dart';
 import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -21,6 +23,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+
+
   // Initialize HydratedBloc storage
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory.web,
@@ -29,9 +33,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // Configure dependency injection
   configureDependencies();
 
+  await getIt<AppCheckService>().initialize();
+
+
   AppLogger.success('Bootstrap completed successfully');
 
   await getIt<AnalyticsService>().setUserId();
+
+  await getIt<AuthenticationService>().signInAnonymously();
+
 
   // Run the app
   runApp(await builder());
