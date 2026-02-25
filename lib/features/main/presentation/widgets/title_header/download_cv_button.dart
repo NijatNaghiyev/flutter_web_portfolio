@@ -68,6 +68,6 @@ class DownloadCvButton extends StatelessWidget {
   }
 
   Future<void> launchCv(String cvDownloadPath) async {
-    await getIt<UrlHelper>().openUrl(cvDownloadPath);
+    getIt<UrlHelper>().downloadFile(cvDownloadPath);
   }
 }

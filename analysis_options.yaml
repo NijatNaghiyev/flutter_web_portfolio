@@ -2,7 +2,7 @@ include: package:very_good_analysis/analysis_options.yaml
 
 linter:
   rules:
-    avoid_print: false
+    avoid_print: false  # Uncomment to disable the `avoid_print` rule
     prefer_const_constructors: true
     prefer_const_declarations: true
     prefer_const_literals_to_create_immutables: true
@@ -14,7 +14,6 @@ linter:
     avoid_catching_errors: false
     avoid_catches_without_on_clauses: false
     avoid_positional_boolean_parameters: false
-    sort_constructors_first: false
 
 analyzer:
   exclude:
