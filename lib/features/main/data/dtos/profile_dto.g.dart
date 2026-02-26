@@ -11,4 +11,5 @@ ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => ProfileDto(
   github: json['github'] as String?,
   linkedin: json['linkedin'] as String?,
   email: json['email'] as String?,
+  aboutMe: json['aboutMe'] as String?,
 );

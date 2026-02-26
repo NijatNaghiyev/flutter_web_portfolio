@@ -5,12 +5,12 @@ part 'profile_dto.g.dart';
 
 @JsonSerializable(createToJson: false)
 class ProfileDto {
-
   ProfileDto({
     this.cvPath,
     this.github,
     this.linkedin,
     this.email,
+    this.aboutMe,
   });
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -19,6 +19,7 @@ class ProfileDto {
   final String? github;
   final String? linkedin;
   final String? email;
+  final String? aboutMe;
 
   ProfileEntity toEntity() {
     return ProfileEntity(
@@ -26,6 +27,7 @@ class ProfileDto {
       github: github,
       linkedin: linkedin,
       email: email,
+      aboutMe: aboutMe,
     );
   }
 }
