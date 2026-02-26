@@ -6,4 +6,6 @@ class DrawerCubit extends Cubit<bool> {
   DrawerCubit() : super(false);
 
   void toggle() => emit(!state);
+
+  void closeDrawer() => emit(false);
 }

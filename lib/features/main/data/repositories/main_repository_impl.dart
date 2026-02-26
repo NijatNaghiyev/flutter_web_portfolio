@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: MainRepository)
 class MainRepositoryImpl implements MainRepository {
-  final MainDs _mainDs;
   MainRepositoryImpl(this._mainDs);
+  final MainDs _mainDs;
 
   @override
   Future<Result<ProfileEntity>> getProfile() async {

@@ -49,7 +49,7 @@ class AppTextStyle {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600,
     fontSize: 16,
-    height: 1.0,
+    height: 1,
   );
 
   // Small / Muted

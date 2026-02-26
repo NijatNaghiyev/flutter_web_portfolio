@@ -10,6 +10,8 @@ class ScrollService {
 
   final GlobalKey aboutKey = GlobalKey(debugLabel: 'aboutKey');
   final GlobalKey skillsKey = GlobalKey(debugLabel: 'skillsKey');
+  final GlobalKey projectsKey = GlobalKey(debugLabel: 'projectsKey');
+  final GlobalKey contactKey = GlobalKey(debugLabel: 'contactKey');
 
   /// Scroll to a widget using its GlobalKey
   ///

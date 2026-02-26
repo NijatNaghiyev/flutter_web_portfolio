@@ -21,11 +21,9 @@ class UrlHelper {
     }
   }
 
-  void downloadFile(String url, {String? fileName}) {
-    try {
-      web.window.location.href = url;
-    } catch (e, s) {
-      AppLogger.error('Error downloading file from $url: $e', stackTrace: s);
-    }
+  void openMail(String email) {
+    final url = 'mailto:$email';
+
+    web.window.open(url, '_blank');
   }
 }
