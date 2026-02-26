@@ -7,6 +7,7 @@ enum BreakPoint {
   twoExtraLarge(1536) // Ultra-wide Monitors
   ;
 
-  final double minWidth;
   const BreakPoint(this.minWidth);
+
+  final double minWidth;
 }

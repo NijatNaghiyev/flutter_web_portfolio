@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class ProfileEntity with EquatableMixin {
-  final String? cvPath;
-  final String? github;
-  final String? linkedin;
-  final String? email;
 
   ProfileEntity({
     this.cvPath,
@@ -12,6 +8,10 @@ class ProfileEntity with EquatableMixin {
     this.linkedin,
     this.email,
   });
+  final String? cvPath;
+  final String? github;
+  final String? linkedin;
+  final String? email;
 
   @override
   List<Object?> get props => [cvPath, github, linkedin, email];

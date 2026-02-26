@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class MainCubit extends BaseCubit<MainState> {
-  final MainUsecase _mainUsecase;
   MainCubit(this._mainUsecase) : super(const MainState());
+  final MainUsecase _mainUsecase;
 
   void init() {
     getProfile();

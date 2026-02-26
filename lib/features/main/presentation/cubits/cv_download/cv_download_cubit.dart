@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class CvDownloadCubit extends BaseCubit<CvDownloadState> {
-  final MainUsecase _mainUsecase;
   CvDownloadCubit(this._mainUsecase) : super(const CvDownloadState());
+  final MainUsecase _mainUsecase;
 
   Future<void> downloadCv(String cvPath) async {
     emit(state.copyWith(status: CvDownloadStatus.loading));
@@ -17,7 +17,7 @@ class CvDownloadCubit extends BaseCubit<CvDownloadState> {
       return;
     }
 
-    if(state.cvDownloadPath!=null){
+    if (state.cvDownloadPath != null) {
       emit(state.copyWith(status: CvDownloadStatus.success));
       return;
     }

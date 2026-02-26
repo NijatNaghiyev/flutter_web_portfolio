@@ -24,7 +24,7 @@ class AboutMeTitle extends StatelessWidget {
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(3),
           ),
-        )
+        ),
       ],
     );
   }

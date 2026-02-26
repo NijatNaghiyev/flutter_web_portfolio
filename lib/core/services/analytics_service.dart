@@ -5,11 +5,11 @@ import 'package:injectable/injectable.dart';
 @singleton
 /// Service class for handling Firebase Analytics operations
 class AnalyticsService {
+
+  const AnalyticsService(this._webUserId);
   final WebUserId _webUserId;
 
   static final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
-
-  const AnalyticsService(this._webUserId);
 
   /// Set the user ID for analytics tracking
   Future<void> setUserId() async {

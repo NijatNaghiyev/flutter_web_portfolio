@@ -47,7 +47,7 @@ class TitleHeader extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
-                "👋 Hello, I'm a Flutter Developer",
+                "👋 Hello, I'm Nijat Naghiyev",
                 style: AppTextStyle.bodyLarge.copyWith(
                   color: AppColors.primary,
                 ),
@@ -63,6 +63,7 @@ class TitleHeader extends StatelessWidget {
             ShaderMask(
               shaderCallback: (bounds) => const LinearGradient(
                 colors: [AppColors.primary, Color(0xFF1EB2A5)],
+                stops: [0.0, .8],
               ).createShader(bounds),
               child: Text(
                 'Cross-Platform Experiences',
@@ -118,6 +119,10 @@ class TitleHeader extends StatelessWidget {
                     context.read<MainCubit>().state.profile?.linkedin,
                   ),
                 ),
+                IcButton(
+                  icon: AppAssets.mailIcon,
+                  onTap: () => openMail(context),
+                ),
               ],
             ),
           ],
@@ -132,5 +137,16 @@ class TitleHeader extends StatelessWidget {
       return;
     }
     getIt<UrlHelper>().openUrl(url);
+  }
+
+  void openMail(BuildContext context) {
+    if (context.read<MainCubit>().state.profile?.email == null) {
+      AppLogger.warning('Email is null', stackTrace: StackTrace.current);
+      return;
+    }
+
+    getIt<UrlHelper>().openMail(
+      context.read<MainCubit>().state.profile!.email!,
+    );
   }
 }

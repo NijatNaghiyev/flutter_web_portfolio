@@ -6,10 +6,10 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class MainDs {
-  final FirestoreService _firestoreService;
-  final StorageService _storageService;
 
   MainDs(this._firestoreService, this._storageService);
+  final FirestoreService _firestoreService;
+  final StorageService _storageService;
 
   Future<ProfileDto> getProfile() async {
     final res = await _firestoreService.getDocument(

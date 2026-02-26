@@ -12,8 +12,6 @@ import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/mai
 class DownloadCvButton extends StatelessWidget {
   const DownloadCvButton({super.key});
 
-  static const String fileName = 'Nijat_Naghiyev_CV.pdf';
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<CvDownloadCubit, CvDownloadState>(
@@ -21,6 +19,10 @@ class DownloadCvButton extends StatelessWidget {
         if (state.status == CvDownloadStatus.success &&
             state.cvDownloadPath != null) {
           launchCv(state.cvDownloadPath!);
+        }
+
+        if (state.status == CvDownloadStatus.failure) {
+          AppLogger.error('Failed to download CV');
         }
       },
       child: InkWell(
@@ -69,6 +71,6 @@ class DownloadCvButton extends StatelessWidget {
   }
 
   Future<void> launchCv(String cvDownloadPath) async {
-    getIt<UrlHelper>().downloadFile(cvDownloadPath, fileName: fileName);
+    await getIt<UrlHelper>().openUrl(cvDownloadPath);
   }
 }

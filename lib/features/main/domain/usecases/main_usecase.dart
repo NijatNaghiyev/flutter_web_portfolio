@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class MainUsecase {
-  final MainRepository _mainRepository;
 
   MainUsecase(this._mainRepository);
+  final MainRepository _mainRepository;
 
   Future<Result<ProfileEntity>> getProfile() {
     return _mainRepository.getProfile();
