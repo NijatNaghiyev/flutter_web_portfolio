@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/config/firebase_options.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/cubits/app_bloc_observer.dart';
 import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/services/app_check_service.dart';
 import 'package:flutter_web_portfolio/core/services/authentication_service.dart';
@@ -33,11 +34,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await getIt<AppCheckService>().initialize();
 
-  AppLogger.success('Bootstrap completed successfully');
-
   await getIt<AnalyticsService>().setUserId();
 
   await getIt<AuthenticationService>().signInAnonymously();
+
+  AppLogger.success('Bootstrap completed successfully');
 
   // Run the app
   await runZonedGuarded(
@@ -52,31 +53,4 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       stackTrace: stack,
     ),
   );
-}
-
-/// Bloc observer for debugging
-class AppBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase<dynamic> bloc) {
-    super.onCreate(bloc);
-    AppLogger.info('🟢 ${bloc.runtimeType} created');
-  }
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    AppLogger.info('🔵 ${bloc.runtimeType} changed: $change');
-  }
-
-  @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    super.onError(bloc, error, stackTrace);
-    AppLogger.error('🔴 ${bloc.runtimeType} error: $error');
-  }
-
-  @override
-  void onClose(BlocBase<dynamic> bloc) {
-    super.onClose(bloc);
-    AppLogger.info('🔴 ${bloc.runtimeType} closed');
-  }
 }
