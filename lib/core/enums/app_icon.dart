@@ -9,6 +9,7 @@ enum AppIcon {
   git,
   injection,
   layer,
+  location,
   mobile,
   notification,
   share,
@@ -40,6 +41,8 @@ extension AppIconExtension on AppIcon {
         return 'assets/svgs/injection_icon.svg';
       case AppIcon.layer:
         return 'assets/svgs/layer_icon.svg';
+      case AppIcon.location:
+        return 'assets/svgs/location_icon.svg';
       case AppIcon.mobile:
         return 'assets/svgs/mobile_icon.svg';
       case AppIcon.notification:
@@ -77,6 +80,8 @@ extension AppIconExtension on AppIcon {
         return AppIcon.injection;
       case 'layer':
         return AppIcon.layer;
+      case 'location':
+        return AppIcon.location;
       case 'mobile':
         return AppIcon.mobile;
       case 'notification':

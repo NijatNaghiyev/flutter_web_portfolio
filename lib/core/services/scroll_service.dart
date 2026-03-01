@@ -61,4 +61,23 @@ class ScrollService {
       curve: curve,
     );
   }
+
+  bool isKeyVisible(GlobalKey key) {
+    final context = key.currentContext;
+    if (context == null) return false;
+
+    final renderBox = context.findRenderObject() as RenderBox?;
+    if (renderBox == null || !renderBox.attached) return false;
+
+    final size = renderBox.size;
+    final offset = renderBox.localToGlobal(Offset.zero);
+
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final topVisible = offset.dy >= 0 && offset.dy <= screenHeight;
+    final bottomVisible =
+        offset.dy + size.height >= 0 && offset.dy + size.height <= screenHeight;
+
+    return topVisible || bottomVisible;
+  }
 }

@@ -13,36 +13,35 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 /// Bootstrap function to initialize the app
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  // Ensure Flutter is initialized
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Setup Bloc observer for debugging
-  Bloc.observer = AppBlocObserver();
-
-  // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  // Initialize HydratedBloc storage
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: HydratedStorageDirectory.web,
-  );
-
-  // Configure dependency injection
-  configureDependencies();
-
-  await getIt<AppCheckService>().initialize();
-
-  await getIt<AnalyticsService>().setUserId();
-
-  await getIt<AuthenticationService>().signInAnonymously();
-
-  AppLogger.success('Bootstrap completed successfully');
-
-  // Run the app
   await runZonedGuarded(
     () async {
+      // Ensure Flutter is initialized
+      WidgetsFlutterBinding.ensureInitialized();
+
+      // Setup Bloc observer for debugging
+      Bloc.observer = AppBlocObserver();
+
+      // Initialize Firebase
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+
+      // Initialize HydratedBloc storage
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: HydratedStorageDirectory.web,
+      );
+
+      // Configure dependency injection
+      configureDependencies();
+
+      await getIt<AppCheckService>().initialize();
+
+      await getIt<AnalyticsService>().setUserId();
+
+      await getIt<AuthenticationService>().signInAnonymously();
+
+      AppLogger.success('Bootstrap completed successfully');
+      // Run the app
       runApp(await builder());
     },
     zoneValues: {
