@@ -1,5 +1,6 @@
 import 'package:flutter_web_portfolio/core/cubits/base_cubit.dart';
 import 'package:flutter_web_portfolio/core/network/result.dart';
+import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
 import 'package:flutter_web_portfolio/features/main/domain/usecases/main_usecase.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_state.dart';
 import 'package:injectable/injectable.dart';
@@ -11,6 +12,7 @@ class MainCubit extends BaseCubit<MainState> {
 
   void init() {
     getProfile();
+    getSkills();
   }
 
   Future<void> getProfile() async {
@@ -22,7 +24,24 @@ class MainCubit extends BaseCubit<MainState> {
           profile: data,
         ),
       ),
-      failure: (message) {},
+      failure: (message) {
+        AppLogger.error('Failed to fetch profile: $message');
+      },
+    );
+  }
+
+  Future<void> getSkills() async {
+    final res = await _mainUsecase.getSkills();
+
+    res.when(
+      success: (data) => emit(
+        state.copyWith(
+          skills: data,
+        ),
+      ),
+      failure: (message) {
+        AppLogger.error('Failed to fetch skills: $message');
+      },
     );
   }
 }

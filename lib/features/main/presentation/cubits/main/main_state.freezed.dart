@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MainState {
 
- ProfileEntity? get profile;
+ ProfileEntity? get profile; List<SkillsEntity>? get skills;
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MainStateCopyWith<MainState> get copyWith => _$MainStateCopyWithImpl<MainState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MainState&&(identical(other.profile, profile) || other.profile == profile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MainState&&(identical(other.profile, profile) || other.profile == profile)&&const DeepCollectionEquality().equals(other.skills, skills));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,profile);
+int get hashCode => Object.hash(runtimeType,profile,const DeepCollectionEquality().hash(skills));
 
 @override
 String toString() {
-  return 'MainState(profile: $profile)';
+  return 'MainState(profile: $profile, skills: $skills)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MainStateCopyWith<$Res>  {
   factory $MainStateCopyWith(MainState value, $Res Function(MainState) _then) = _$MainStateCopyWithImpl;
 @useResult
 $Res call({
- ProfileEntity? profile
+ ProfileEntity? profile, List<SkillsEntity>? skills
 });
 
 
@@ -62,10 +62,11 @@ class _$MainStateCopyWithImpl<$Res>
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? profile = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? profile = freezed,Object? skills = freezed,}) {
   return _then(_self.copyWith(
 profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as ProfileEntity?,
+as ProfileEntity?,skills: freezed == skills ? _self.skills : skills // ignore: cast_nullable_to_non_nullable
+as List<SkillsEntity>?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileEntity? profile)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileEntity? profile,  List<SkillsEntity>? skills)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MainState() when $default != null:
-return $default(_that.profile);case _:
+return $default(_that.profile,_that.skills);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileEntity? profile)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileEntity? profile,  List<SkillsEntity>? skills)  $default,) {final _that = this;
 switch (_that) {
 case _MainState():
-return $default(_that.profile);case _:
+return $default(_that.profile,_that.skills);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +192,10 @@ return $default(_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileEntity? profile)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileEntity? profile,  List<SkillsEntity>? skills)?  $default,) {final _that = this;
 switch (_that) {
 case _MainState() when $default != null:
-return $default(_that.profile);case _:
+return $default(_that.profile,_that.skills);case _:
   return null;
 
 }
@@ -206,10 +207,19 @@ return $default(_that.profile);case _:
 
 
 class _MainState implements MainState {
-  const _MainState({this.profile});
+  const _MainState({this.profile, final  List<SkillsEntity>? skills}): _skills = skills;
   
 
 @override final  ProfileEntity? profile;
+ final  List<SkillsEntity>? _skills;
+@override List<SkillsEntity>? get skills {
+  final value = _skills;
+  if (value == null) return null;
+  if (_skills is EqualUnmodifiableListView) return _skills;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +231,16 @@ _$MainStateCopyWith<_MainState> get copyWith => __$MainStateCopyWithImpl<_MainSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MainState&&(identical(other.profile, profile) || other.profile == profile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MainState&&(identical(other.profile, profile) || other.profile == profile)&&const DeepCollectionEquality().equals(other._skills, _skills));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,profile);
+int get hashCode => Object.hash(runtimeType,profile,const DeepCollectionEquality().hash(_skills));
 
 @override
 String toString() {
-  return 'MainState(profile: $profile)';
+  return 'MainState(profile: $profile, skills: $skills)';
 }
 
 
@@ -241,7 +251,7 @@ abstract mixin class _$MainStateCopyWith<$Res> implements $MainStateCopyWith<$Re
   factory _$MainStateCopyWith(_MainState value, $Res Function(_MainState) _then) = __$MainStateCopyWithImpl;
 @override @useResult
 $Res call({
- ProfileEntity? profile
+ ProfileEntity? profile, List<SkillsEntity>? skills
 });
 
 
@@ -258,10 +268,11 @@ class __$MainStateCopyWithImpl<$Res>
 
 /// Create a copy of MainState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? profile = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? profile = freezed,Object? skills = freezed,}) {
   return _then(_MainState(
 profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as ProfileEntity?,
+as ProfileEntity?,skills: freezed == skills ? _self._skills : skills // ignore: cast_nullable_to_non_nullable
+as List<SkillsEntity>?,
   ));
 }
 

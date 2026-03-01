@@ -2,11 +2,11 @@ import 'package:flutter_web_portfolio/core/const/firebase_constants.dart';
 import 'package:flutter_web_portfolio/core/services/firestore_service.dart';
 import 'package:flutter_web_portfolio/core/services/storage_service.dart';
 import 'package:flutter_web_portfolio/features/main/data/dtos/profile_dto.dart';
+import 'package:flutter_web_portfolio/features/main/data/dtos/skills_dto.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class MainDs {
-
   MainDs(this._firestoreService, this._storageService);
   final FirestoreService _firestoreService;
   final StorageService _storageService;
@@ -31,6 +31,19 @@ class MainDs {
       return url;
     } else {
       throw Exception('CV download URL not found for path: $path');
+    }
+  }
+
+  Future<SkillsDto> getSkills() async {
+    final res = await _firestoreService.getDocument(
+      collection: FirebaseConstants.skillsCollection,
+      docId: FirebaseConstants.skillsDocId,
+    );
+
+    if (res != null) {
+      return SkillsDto.fromJson(res);
+    } else {
+      throw Exception('Skills document not found');
     }
   }
 }

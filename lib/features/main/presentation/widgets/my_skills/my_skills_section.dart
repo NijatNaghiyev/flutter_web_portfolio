@@ -14,10 +14,18 @@ class MySkillsSection extends StatelessWidget {
       key: getIt<ScrollService>().skillsKey,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
       child: Flex(
+        spacing: 16,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: context.isMobileOrTablet
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         direction: context.isMobileOrTablet ? Axis.vertical : Axis.horizontal,
-        children: const [
-          MySkillTitle(),
-          MySkillsList(),
+        children: [
+          const MySkillTitle(),
+          Flexible(
+            flex: context.isMobileOrTablet ? 0 : 1,
+            child: const MySkillsList(),
+          ),
         ],
       ),
     );
