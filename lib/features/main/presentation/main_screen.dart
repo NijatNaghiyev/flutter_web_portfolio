@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/footer/footer_section.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/my_projects/my_projects_section.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/about_me/about_me_section.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/main_app_bar.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/my_skills/my_skills_section.dart';
@@ -44,66 +46,17 @@ class _MainScreenState extends State<MainScreen> {
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) =>
                 _buildHeaderSliver,
-            body: Scrollbar(
+            body: const Scrollbar(
               thumbVisibility: true,
               child: SingleChildScrollView(
                 primary: true,
                 child: Column(
                   children: [
-                    const HeaderMain(),
-                    const AboutMeSection(),
-                    const MySkillsSection(),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                      child: const Center(
-                        child: Text('Section 1'),
-                      ),
-                    ),
-                    Text(MediaQuery.of(context).size.width.toString()),
-                    Text(context.breakPoint.toString()),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                      child: const Center(
-                        child: Text('Section 1'),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.green,
-                      child: const Center(
-                        child: Text('Section 2'),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.blue,
-                      child: const Center(
-                        child: Text('Section 3'),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                      child: const Center(
-                        child: Text('Section 1'),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.green,
-                      child: const Center(
-                        child: Text('Section 2'),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.blue,
-                      child: const Center(
-                        child: Text('Section 3'),
-                      ),
-                    ),
+                    HeaderMain(),
+                    AboutMeSection(),
+                    MySkillsSection(),
+                    MyProjectsSection(),
+                    FooterSection(),
                   ],
                 ),
               ),

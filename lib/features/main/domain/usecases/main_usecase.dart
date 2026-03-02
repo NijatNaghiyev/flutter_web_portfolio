@@ -1,5 +1,6 @@
 import 'package:flutter_web_portfolio/core/network/result.dart';
 import 'package:flutter_web_portfolio/features/main/domain/entities/profile_entity.dart';
+import 'package:flutter_web_portfolio/features/main/domain/entities/projects_entity.dart';
 import 'package:flutter_web_portfolio/features/main/domain/entities/skills_entity.dart';
 import 'package:flutter_web_portfolio/features/main/domain/repositories/main_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -19,5 +20,9 @@ class MainUsecase {
 
   Future<Result<List<SkillsEntity>>> getSkills() {
     return _mainRepository.getSkills();
+  }
+
+  Future<Result<List<ProjectsEntity>>> getProjects() {
+    return _mainRepository.getProjects();
   }
 }

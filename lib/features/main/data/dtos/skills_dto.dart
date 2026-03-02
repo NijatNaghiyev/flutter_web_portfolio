@@ -36,12 +36,13 @@ class SkillDto {
 
   factory SkillDto.fromJson(Map<String, dynamic> json) =>
       _$SkillDtoFromJson(json);
+
   final String title;
-  @JsonKey(fromJson: appIconFromJson)
+  @JsonKey(fromJson: _appIconFromJson)
   final AppIcon? icon;
 }
 
-AppIcon? appIconFromJson(String? icon) {
+AppIcon? _appIconFromJson(String? icon) {
   if (icon == null) return null;
   try {
     return AppIcon.values.firstWhere((e) => e.name == icon);

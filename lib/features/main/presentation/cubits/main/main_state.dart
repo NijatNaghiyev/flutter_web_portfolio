@@ -1,4 +1,5 @@
 import 'package:flutter_web_portfolio/features/main/domain/entities/profile_entity.dart';
+import 'package:flutter_web_portfolio/features/main/domain/entities/projects_entity.dart';
 import 'package:flutter_web_portfolio/features/main/domain/entities/skills_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,5 +10,6 @@ abstract class MainState with _$MainState {
   const factory MainState({
     ProfileEntity? profile,
     List<SkillsEntity>? skills,
+    List<ProjectsEntity>? projects,
   }) = _MainState;
 }
