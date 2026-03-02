@@ -13,6 +13,7 @@ class MainCubit extends BaseCubit<MainState> {
   void init() {
     getProfile();
     getSkills();
+    getProjects();
   }
 
   Future<void> getProfile() async {
@@ -41,6 +42,21 @@ class MainCubit extends BaseCubit<MainState> {
       ),
       failure: (message) {
         AppLogger.error('Failed to fetch skills: $message');
+      },
+    );
+  }
+
+  Future<void> getProjects() async {
+    final res = await _mainUsecase.getProjects();
+
+    res.when(
+      success: (data) => emit(
+        state.copyWith(
+          projects: data,
+        ),
+      ),
+      failure: (message) {
+        AppLogger.error('Failed to fetch projects: $message');
       },
     );
   }

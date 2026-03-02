@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/const/app_size.dart';
+import 'package:flutter_web_portfolio/core/const/app_strings.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/extensions/string.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
@@ -25,8 +26,6 @@ class MainAppBar extends StatefulWidget {
 }
 
 class _MainAppBarState extends State<MainAppBar> {
-  static const _title = '</> FlutterDev';
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DrawerCubit, bool>(
@@ -123,7 +122,7 @@ class _MainAppBarState extends State<MainAppBar> {
         web.window.location.reload();
       },
       child: Text(
-        _title,
+        AppStrings.title,
         style: AppTextStyle.projectTitle.copyWith(
           color: AppColors.primary,
         ),

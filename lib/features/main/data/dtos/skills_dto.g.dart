@@ -14,5 +14,5 @@ SkillsDto _$SkillsDtoFromJson(Map<String, dynamic> json) => SkillsDto(
 
 SkillDto _$SkillDtoFromJson(Map<String, dynamic> json) => SkillDto(
   title: json['title'] as String,
-  icon: appIconFromJson(json['icon'] as String?),
+  icon: _appIconFromJson(json['icon'] as String?),
 );

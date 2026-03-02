@@ -2,6 +2,7 @@ import 'package:flutter_web_portfolio/core/const/firebase_constants.dart';
 import 'package:flutter_web_portfolio/core/services/firestore_service.dart';
 import 'package:flutter_web_portfolio/core/services/storage_service.dart';
 import 'package:flutter_web_portfolio/features/main/data/dtos/profile_dto.dart';
+import 'package:flutter_web_portfolio/features/main/data/dtos/projects_dto.dart';
 import 'package:flutter_web_portfolio/features/main/data/dtos/skills_dto.dart';
 import 'package:injectable/injectable.dart';
 
@@ -44,6 +45,19 @@ class MainDs {
       return SkillsDto.fromJson(res);
     } else {
       throw Exception('Skills document not found');
+    }
+  }
+
+  Future<ProjectsDto> getProjects() async {
+    final res = await _firestoreService.getDocument(
+      collection: FirebaseConstants.projectsCollection,
+      docId: FirebaseConstants.projectsDocId,
+    );
+
+    if (res != null) {
+      return ProjectsDto.fromJson(res);
+    } else {
+      throw Exception('Projects document not found');
     }
   }
 }
