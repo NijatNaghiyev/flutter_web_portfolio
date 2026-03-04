@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/my_projects/my_projects_list.dart';
-import 'package:flutter_web_portfolio/features/main/presentation/my_projects/my_projects_title.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/my_projects/my_projects_list.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/my_projects/my_projects_title.dart';
 
 class MyProjectsSection extends StatelessWidget {
   const MyProjectsSection({super.key});
