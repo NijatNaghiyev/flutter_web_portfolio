@@ -18,19 +18,15 @@ class MyProjectsList extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return SizedBox(
-          height: 300,
-          width: double.infinity,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              spacing: 16,
-              children: state
-                  .map(
-                    (e) => _MyProjectItem(item: e),
-                  )
-                  .toList(),
-            ),
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            spacing: 16,
+            children: state
+                .map(
+                  (e) => _MyProjectItem(item: e),
+                )
+                .toList(),
           ),
         );
       },
@@ -48,22 +44,21 @@ class _MyProjectItem extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: 200,
-          child: AspectRatio(
-            aspectRatio: 9 / 16,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                image: item.imageUrl != null
-                    ? DecorationImage(
-                        image: NetworkImage(item.imageUrl!),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
+          width: 350,
+          height: 450,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
+              color: Colors.white,
+              image: item.imageUrl != null
+                  ? DecorationImage(
+                      image: NetworkImage(item.imageUrl!),
+                      fit: BoxFit.fitWidth,
+                    )
+                  : null,
             ),
           ),
         ),

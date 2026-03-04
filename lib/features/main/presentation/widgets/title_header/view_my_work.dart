@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 
@@ -28,7 +30,11 @@ class _ViewMyWorkState extends State<ViewMyWork> {
         duration: const Duration(milliseconds: 200),
         scale: isHovered ? 1.08 : 1.0,
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            getIt<ScrollService>().scrollToKey(
+              key: getIt<ScrollService>().projectsKey,
+            );
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
             decoration: BoxDecoration(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 
@@ -7,29 +9,34 @@ class LetsTalkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.5),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(
-          color: AppColors.lightBorder,
-          width: 2,
-        ),
+    return GestureDetector(
+      onTap: () => getIt<ScrollService>().scrollToKey(
+        key: getIt<ScrollService>().contactKey,
       ),
-      child: Text(
-        "Let's Talk",
-        style: AppTextStyle.smallMuted.copyWith(
-          color: AppColors.lightMuted,
+      child: Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.5),
+              blurRadius: 16,
+              offset: const Offset(0, 4),
+            ),
+          ],
+          border: Border.all(
+            color: AppColors.lightBorder,
+            width: 2,
+          ),
+        ),
+        child: Text(
+          "Let's Talk",
+          style: AppTextStyle.smallMuted.copyWith(
+            color: AppColors.lightMuted,
+          ),
         ),
       ),
     );
