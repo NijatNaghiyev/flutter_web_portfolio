@@ -29,16 +29,8 @@ class _HeaderImageState extends State<HeaderImage> {
       child: Padding(
         padding: const EdgeInsets.only(right: 48),
         child: MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              isHovered = true;
-            });
-          },
-          onExit: (_) {
-            setState(() {
-              isHovered = false;
-            });
-          },
+          onEnter: (_) => setState(() => isHovered = true),
+          onExit: (_) => setState(() => isHovered = false),
           child: AnimatedRotation(
             turns: isHovered ? 0 : 0.02,
             duration: const Duration(milliseconds: 300),

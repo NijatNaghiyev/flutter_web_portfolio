@@ -1,4 +1,5 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,10 +11,11 @@ class AppCheckService {
 
   Future<void> initialize() async {
     try {
-      await _appCheck.activate(
-        providerWeb: ReCaptchaV3Provider(_reCaptchaSiteKey),
-      );
-
+      if (!kDebugMode) {
+        await _appCheck.activate(
+          providerWeb: ReCaptchaV3Provider(_reCaptchaSiteKey),
+        );
+      }
       AppLogger.info('Firebase App Check initialized successfully');
     } catch (e, s) {
       AppLogger.error(

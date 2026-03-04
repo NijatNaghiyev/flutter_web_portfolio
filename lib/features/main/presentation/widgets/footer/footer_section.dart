@@ -26,6 +26,7 @@ class FooterSection extends StatelessWidget {
             style: AppTextStyle.bodyBase.copyWith(
               color: AppColors.getForeground(context),
             ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
