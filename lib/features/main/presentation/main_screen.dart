@@ -48,6 +48,7 @@ class _MainScreenState extends State<MainScreen> {
                 _buildHeaderSliver,
             body: const Scrollbar(
               thumbVisibility: true,
+              interactive: true,
               child: SingleChildScrollView(
                 primary: true,
                 child: Column(

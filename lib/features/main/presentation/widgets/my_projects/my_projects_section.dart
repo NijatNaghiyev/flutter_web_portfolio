@@ -16,7 +16,7 @@ class MyProjectsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 32),
       color: AppColors.getMuted(context).withValues(alpha: 0.7),
       child: const Column(
-        spacing: 16,
+        spacing: 60,
         crossAxisAlignment: .stretch,
         children: [
           MyProjectsTitle(),

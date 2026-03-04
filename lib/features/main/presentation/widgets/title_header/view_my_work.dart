@@ -16,16 +16,8 @@ class _ViewMyWorkState extends State<ViewMyWork> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (event) {
-        setState(() {
-          isHovered = true;
-        });
-      },
-      onExit: (event) {
-        setState(() {
-          isHovered = false;
-        });
-      },
+      onEnter: (details) => setState(() => isHovered = true),
+      onExit: (details) => setState(() => isHovered = false),
       child: AnimatedScale(
         duration: const Duration(milliseconds: 200),
         scale: isHovered ? 1.08 : 1.0,
