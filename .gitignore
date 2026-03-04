@@ -53,3 +53,4 @@ firebase-debug.*.log
 firebase.json
 firebase_options.dart
 .firebaserc
+cors.json
