@@ -61,99 +61,99 @@ class MainCubit extends BaseCubit<MainState> {
       },
     );
 
-    emit(
-      state.copyWith(
-        projects: [
-          ProjectsEntity(
-            title: 'title',
-            description: 'description' * 100,
-            imageUrl:
-                'https://i.pinimg.com/originals/13/be/95/13be95147b920e7c4ee958ff30db7a11.jpg',
-            githubUrl: 'ddd',
-            websiteUrl: 'ddd',
-            iosUrl: 'ddd',
-            androidUrl: 'ddd',
-            tags: 'Flutter, Dart, Firebase, REST API, Provider, GitHub, CI/CD',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-          ProjectsEntity(
-            title: '',
-            description: '',
-            imageUrl:
-                'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
-            githubUrl: '',
-            websiteUrl: '',
-            iosUrl: '',
-            androidUrl: '',
-            tags: '',
-          ),
-        ],
-      ),
-    );
+    // emit(
+    //   state.copyWith(
+    //     projects: [
+    //       ProjectsEntity(
+    //         title: 'title',
+    //         description: 'description' * 100,
+    //         imageUrl:
+    //             'https://i.pinimg.com/originals/13/be/95/13be95147b920e7c4ee958ff30db7a11.jpg',
+    //         githubUrl: 'ddd',
+    //         websiteUrl: 'ddd',
+    //         iosUrl: 'ddd',
+    //         androidUrl: 'ddd',
+    //         tags: 'Flutter, Dart, Firebase, REST API, Provider, GitHub, CI/CD',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //       ProjectsEntity(
+    //         title: '',
+    //         description: '',
+    //         imageUrl:
+    //             'https://pub.dev/static/hash-btvv2vbt/img/pub-dev-icon-cover-image.png',
+    //         githubUrl: '',
+    //         websiteUrl: '',
+    //         iosUrl: '',
+    //         androidUrl: '',
+    //         tags: '',
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }
