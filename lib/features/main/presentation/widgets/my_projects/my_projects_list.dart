@@ -28,6 +28,7 @@ class MyProjectsList extends StatelessWidget {
 
         return Scrollbar(
           interactive: true,
+          scrollbarOrientation: ScrollbarOrientation.bottom,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
