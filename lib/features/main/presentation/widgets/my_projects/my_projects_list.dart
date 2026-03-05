@@ -26,20 +26,23 @@ class MyProjectsList extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          child: Row(
-            spacing: 20,
-            crossAxisAlignment: .start,
-            children: state
-                .map(
-                  (e) => _MyProjectItem(
-                    item: e,
-                    aspectRatio: aspectRatio,
-                  ),
-                )
-                .toList(),
+        return Scrollbar(
+          interactive: true,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            child: Row(
+              spacing: 20,
+              crossAxisAlignment: .start,
+              children: state
+                  .map(
+                    (e) => _MyProjectItem(
+                      item: e,
+                      aspectRatio: aspectRatio,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         );
       },
