@@ -46,19 +46,24 @@ class _MainScreenState extends State<MainScreen> {
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) =>
                 _buildHeaderSliver,
-            body: const Scrollbar(
-              thumbVisibility: true,
-              interactive: true,
-              child: SingleChildScrollView(
-                primary: true,
-                child: Column(
-                  children: [
-                    HeaderMain(),
-                    AboutMeSection(),
-                    MySkillsSection(),
-                    MyProjectsSection(),
-                    FooterSection(),
-                  ],
+            body: ScrollConfiguration(
+              behavior: const MaterialScrollBehavior().copyWith(
+                scrollbars: false,
+              ),
+              child: const Scrollbar(
+                thumbVisibility: true,
+                interactive: true,
+                child: SingleChildScrollView(
+                  primary: true,
+                  child: Column(
+                    children: [
+                      HeaderMain(),
+                      AboutMeSection(),
+                      MySkillsSection(),
+                      MyProjectsSection(),
+                      FooterSection(),
+                    ],
+                  ),
                 ),
               ),
             ),

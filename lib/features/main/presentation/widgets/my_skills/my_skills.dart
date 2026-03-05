@@ -34,6 +34,9 @@ class _MySkillsState extends State<MySkills>
       duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
+
+    _initListen();
+
   }
 
   @override
@@ -44,11 +47,6 @@ class _MySkillsState extends State<MySkills>
     super.dispose();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _initListen();
-  }
 
   void _startAnimation() {
     if (_controller.isAnimating || _controller.isCompleted) return;

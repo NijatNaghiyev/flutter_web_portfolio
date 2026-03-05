@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/const/app_assets.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
+import 'package:flutter_web_portfolio/core/utils/url_helper.dart';
 import 'package:flutter_web_portfolio/features/main/domain/entities/projects_entity.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_state.dart';
@@ -161,7 +165,7 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   if (widget.item.imageUrl != null)
-                    Positioned.fill(
+                    Center(
                       child: Image.network(
                         widget.item.imageUrl!,
                         fit: BoxFit.fitWidth,
@@ -188,10 +192,68 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                       ),
                     ),
                   ),
+
+                  Positioned(
+                    bottom: 12,
+                    left: 12,
+                    child: Row(
+                      spacing: 12,
+                      children: [
+                        if (widget.item.websiteUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkWebIcon,
+                            url: widget.item.websiteUrl!,
+                          ),
+
+                        if (widget.item.githubUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkGitIcon,
+                            url: widget.item.githubUrl!,
+                          ),
+
+                        if (widget.item.iosUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkAppleIcon,
+                            url: widget.item.iosUrl!,
+                          ),
+
+                        if (widget.item.androidUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkAndroidIcon,
+                            url: widget.item.androidUrl!,
+                          ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _linkIcon({required String iconPath, required String url}) {
+    return InkWell(
+      onTap: () => getIt<UrlHelper>().openUrl(url),
+      customBorder: const CircleBorder(),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.getForeground(context),
+          border: const Border.fromBorderSide(
+            BorderSide(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+        ),
+        child: SvgPicture.asset(
+          iconPath,
+          width: 16,
+          height: 16,
         ),
       ),
     );
