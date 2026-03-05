@@ -166,6 +166,7 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                         widget.item.imageUrl!,
                         fit: BoxFit.fitWidth,
                         filterQuality: FilterQuality.high,
+                        width: _width,
                         cacheWidth: (_width * widget.aspectRatio).toInt(),
                       ),
                     ),
