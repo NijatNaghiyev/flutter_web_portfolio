@@ -240,10 +240,10 @@ class _MyProjectItemState extends State<_MyProjectItem> {
       customBorder: const CircleBorder(),
       child: Container(
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors.getForeground(context),
-          border: const Border.fromBorderSide(
+          color: AppColors.primary,
+          border: Border.fromBorderSide(
             BorderSide(
               color: Colors.white,
               width: 2,
