@@ -11,6 +11,7 @@ class MyProjectsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final aspectRatio = MediaQuery.devicePixelRatioOf(context);
     return BlocSelector<MainCubit, MainState, List<ProjectsEntity>?>(
       selector: (state) {
         return state.projects;
@@ -28,7 +29,10 @@ class MyProjectsList extends StatelessWidget {
             crossAxisAlignment: .start,
             children: state
                 .map(
-                  (e) => _MyProjectItem(item: e),
+                  (e) => _MyProjectItem(
+                    item: e,
+                    aspectRatio: aspectRatio,
+                  ),
                 )
                 .toList(),
           ),
@@ -39,9 +43,10 @@ class MyProjectsList extends StatelessWidget {
 }
 
 class _MyProjectItem extends StatefulWidget {
-  const _MyProjectItem({required this.item});
+  const _MyProjectItem({required this.aspectRatio, required this.item});
 
   final ProjectsEntity item;
+  final double aspectRatio;
 
   @override
   State<_MyProjectItem> createState() => _MyProjectItemState();
@@ -57,6 +62,8 @@ class _MyProjectItemState extends State<_MyProjectItem> {
     super.dispose();
   }
 
+  static const _width = 350.0;
+  static const _height = 450.0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -65,64 +72,62 @@ class _MyProjectItemState extends State<_MyProjectItem> {
         onEnter: (details) => setState(() => _isHovered = true),
         onExit: (details) => setState(() => _isHovered = false),
         child: SizedBox(
-          width: 350,
+          width: _width,
           child: Column(
             spacing: 24,
             crossAxisAlignment: .start,
             children: [
               // Top part
-              SizedBox(
-                height: 450,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Positioned.fill(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                          color: Colors.white,
+              AnimatedScale(
+                scale: _isHovered ? 1.05 : 1.0,
+                duration: const Duration(milliseconds: 300),
+                child: AnimatedSlide(
+                  offset: _isHovered ? const Offset(0, -0.02) : Offset.zero,
+                  duration: const Duration(milliseconds: 300),
+                  child: SizedBox(
+                    height: _height,
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
                         ),
-                        child: widget.item.imageUrl != null
-                            ? AnimatedScale(
-                                scale: _isHovered ? 1.05 : 1.0,
-                                duration: const Duration(milliseconds: 300),
-                                child: AnimatedSlide(
-                                  offset: _isHovered
-                                      ? const Offset(0, -0.02)
-                                      : Offset.zero,
-                                  duration: const Duration(milliseconds: 300),
-                                  child: Image.network(
-                                    widget.item.imageUrl!,
-                                    fit: BoxFit.cover,
-                                    filterQuality: FilterQuality.high,
-                                  ),
-                                ),
-                              )
-                            : null,
+                        color: Colors.white,
                       ),
-                    ),
+                      child: Stack(
+                        children: [
+                          if (widget.item.imageUrl != null)
+                            Positioned.fill(
+                              child: Image.network(
+                                widget.item.imageUrl!,
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                                cacheWidth: (_width * widget.aspectRatio)
+                                    .toInt(),
+                              ),
+                            ),
 
-                    Positioned(
-                      child: Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                          gradient: _isHovered
-                              ? LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    Colors.black.withValues(alpha: .6),
-                                    Colors.transparent,
-                                  ],
-                                )
-                              : null,
-                        ),
+                          Positioned(
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                gradient: _isHovered
+                                    ? LinearGradient(
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
+                                        colors: [
+                                          Colors.black.withValues(alpha: .6),
+                                          Colors.transparent,
+                                        ],
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
 
