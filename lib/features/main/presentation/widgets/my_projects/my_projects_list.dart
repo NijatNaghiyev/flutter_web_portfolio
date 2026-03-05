@@ -12,6 +12,7 @@ class MyProjectsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final aspectRatio = MediaQuery.devicePixelRatioOf(context);
+
     return BlocSelector<MainCubit, MainState, List<ProjectsEntity>?>(
       selector: (state) {
         return state.projects;
