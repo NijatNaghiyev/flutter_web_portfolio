@@ -85,47 +85,48 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                 child: AnimatedSlide(
                   offset: _isHovered ? const Offset(0, -0.02) : Offset.zero,
                   duration: const Duration(milliseconds: 300),
-                  child: SizedBox(
-                    height: _height,
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    child: SizedBox(
+                      height: _height,
+                      child: ColoredBox(
                         color: Colors.white,
-                      ),
-                      child: Stack(
-                        children: [
-                          if (widget.item.imageUrl != null)
-                            Positioned.fill(
-                              child: Image.network(
-                                widget.item.imageUrl!,
-                                fit: BoxFit.cover,
-                                filterQuality: FilterQuality.high,
-                                cacheWidth: (_width * widget.aspectRatio)
-                                    .toInt(),
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            if (widget.item.imageUrl != null)
+                              Positioned.fill(
+                                child: Image.network(
+                                  widget.item.imageUrl!,
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                  cacheWidth: (_width * widget.aspectRatio)
+                                      .toInt(),
+                                ),
                               ),
-                            ),
 
-                          Positioned(
-                            child: Container(
-                              height: 100,
-                              decoration: BoxDecoration(
-                                gradient: _isHovered
-                                    ? LinearGradient(
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter,
-                                        colors: [
-                                          Colors.black.withValues(alpha: .6),
-                                          Colors.transparent,
-                                        ],
-                                      )
-                                    : null,
+                            Positioned(
+                              child: Container(
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  gradient: _isHovered
+                                      ? LinearGradient(
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter,
+                                          colors: [
+                                            Colors.black.withValues(alpha: .6),
+                                            Colors.transparent,
+                                          ],
+                                        )
+                                      : null,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -241,7 +242,7 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                 context,
               ).withValues(alpha: 0.7),
             ),
-            maxLines: value ? null : 4,
+            maxLines: value ? null : 3,
             overflow: value ? TextOverflow.visible : TextOverflow.ellipsis,
           ),
         );
