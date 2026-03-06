@@ -383,7 +383,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Nijat Naghiyev**
 
 - Portfolio: [nijat-naghiyev.web.app](https://nijat-naghiyev.web.app)
-- GitHub: [@yNijatNaghiyev](https://github.com/NijatNaghiyev)
+- GitHub: [@NijatNaghiyev](https://github.com/NijatNaghiyev)
 - LinkedIn: [Nijat Naghiyev](https://linkedin.com/in/nijat-naghiyev)
 
 ---
