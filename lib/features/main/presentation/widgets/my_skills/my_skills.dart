@@ -34,6 +34,9 @@ class _MySkillsState extends State<MySkills>
       duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
+
+    _initListen();
+
   }
 
   @override
@@ -44,11 +47,6 @@ class _MySkillsState extends State<MySkills>
     super.dispose();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _initListen();
-  }
 
   void _startAnimation() {
     if (_controller.isAnimating || _controller.isCompleted) return;
@@ -79,34 +77,29 @@ class _MySkillsState extends State<MySkills>
     final itemCount = widget.item.length;
     final singleItemInterval = 1.0 / itemCount;
 
-    return AnimatedSize(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-      alignment: Alignment.topCenter,
-      child: Wrap(
-        spacing: 16,
-        runSpacing: 16,
-        children: widget.item.map((e) {
-          final index = widget.item.indexOf(e);
-          final start = index * singleItemInterval;
-          final end = (index + 1) * singleItemInterval;
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      children: widget.item.map((e) {
+        final index = widget.item.indexOf(e);
+        final start = index * singleItemInterval;
+        final end = (index + 1) * singleItemInterval;
 
-          final animation = CurvedAnimation(
-            parent: _controller,
-            curve: Interval(start, end, curve: Curves.easeInOut),
-          );
+        final animation = CurvedAnimation(
+          parent: _controller,
+          curve: Interval(start, end, curve: Curves.easeInOut),
+        );
 
-          return FadeTransition(
-            opacity: animation,
-            child: ScaleTransition(
-              scale: animation,
-              child: _MySkillsItem(
-                item: e,
-              ),
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: animation,
+            child: _MySkillsItem(
+              item: e,
             ),
-          );
-        }).toList(),
-      ),
+          ),
+        );
+      }).toList(),
     );
   }
 }

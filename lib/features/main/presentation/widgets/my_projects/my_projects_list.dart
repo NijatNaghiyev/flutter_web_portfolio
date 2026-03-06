@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/const/app_assets.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
+import 'package:flutter_web_portfolio/core/utils/url_helper.dart';
 import 'package:flutter_web_portfolio/features/main/domain/entities/projects_entity.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_state.dart';
@@ -22,20 +26,24 @@ class MyProjectsList extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          child: Row(
-            spacing: 20,
-            crossAxisAlignment: .start,
-            children: state
-                .map(
-                  (e) => _MyProjectItem(
-                    item: e,
-                    aspectRatio: aspectRatio,
-                  ),
-                )
-                .toList(),
+        return Scrollbar(
+          interactive: true,
+          scrollbarOrientation: ScrollbarOrientation.bottom,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            child: Row(
+              spacing: 20,
+              crossAxisAlignment: .start,
+              children: state
+                  .map(
+                    (e) => _MyProjectItem(
+                      item: e,
+                      aspectRatio: aspectRatio,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         );
       },
@@ -79,58 +87,7 @@ class _MyProjectItemState extends State<_MyProjectItem> {
             crossAxisAlignment: .start,
             children: [
               // Top part
-              AnimatedScale(
-                scale: _isHovered ? 1.05 : 1.0,
-                duration: const Duration(milliseconds: 300),
-                child: AnimatedSlide(
-                  offset: _isHovered ? const Offset(0, -0.02) : Offset.zero,
-                  duration: const Duration(milliseconds: 300),
-                  child: SizedBox(
-                    height: _height,
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        ),
-                        color: Colors.white,
-                      ),
-                      child: Stack(
-                        children: [
-                          if (widget.item.imageUrl != null)
-                            Positioned.fill(
-                              child: Image.network(
-                                widget.item.imageUrl!,
-                                fit: BoxFit.cover,
-                                filterQuality: FilterQuality.high,
-                                cacheWidth: (_width * widget.aspectRatio)
-                                    .toInt(),
-                              ),
-                            ),
-
-                          Positioned(
-                            child: Container(
-                              height: 100,
-                              decoration: BoxDecoration(
-                                gradient: _isHovered
-                                    ? LinearGradient(
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter,
-                                        colors: [
-                                          Colors.black.withValues(alpha: .6),
-                                          Colors.transparent,
-                                        ],
-                                      )
-                                    : null,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _buildTopPart(),
 
               // Bottom part
               Padding(
@@ -192,6 +149,120 @@ class _MyProjectItemState extends State<_MyProjectItem> {
     );
   }
 
+  AnimatedScale _buildTopPart() {
+    return AnimatedScale(
+      scale: _isHovered ? 1.05 : 1.0,
+      duration: const Duration(milliseconds: 300),
+      child: AnimatedSlide(
+        offset: _isHovered ? const Offset(0, -0.02) : Offset.zero,
+        duration: const Duration(milliseconds: 300),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
+          child: SizedBox(
+            height: _height,
+            child: ColoredBox(
+              color: Colors.white,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  if (widget.item.imageUrl != null)
+                    Center(
+                      child: Image.network(
+                        widget.item.imageUrl!,
+                        fit: BoxFit.fitWidth,
+                        filterQuality: FilterQuality.high,
+                        width: _width,
+                        cacheWidth: (_width * widget.aspectRatio).toInt(),
+                      ),
+                    ),
+
+                  Positioned(
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        gradient: _isHovered
+                            ? LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  Colors.black.withValues(alpha: .6),
+                                  Colors.transparent,
+                                ],
+                              )
+                            : null,
+                      ),
+                    ),
+                  ),
+
+                  Positioned(
+                    bottom: 12,
+                    left: 12,
+                    child: Row(
+                      spacing: 12,
+                      children: [
+                        if (widget.item.websiteUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkWebIcon,
+                            url: widget.item.websiteUrl!,
+                          ),
+
+                        if (widget.item.githubUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkGitIcon,
+                            url: widget.item.githubUrl!,
+                          ),
+
+                        if (widget.item.iosUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkAppleIcon,
+                            url: widget.item.iosUrl!,
+                          ),
+
+                        if (widget.item.androidUrl != null)
+                          _linkIcon(
+                            iconPath: AppAssets.linkAndroidIcon,
+                            url: widget.item.androidUrl!,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _linkIcon({required String iconPath, required String url}) {
+    return InkWell(
+      onTap: () => getIt<UrlHelper>().openUrl(url),
+      customBorder: const CircleBorder(),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primary,
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+        ),
+        child: SvgPicture.asset(
+          iconPath,
+          width: 16,
+          height: 16,
+        ),
+      ),
+    );
+  }
+
   Text _buildTitle(BuildContext context) {
     return Text(
       widget.item.title!,
@@ -241,7 +312,7 @@ class _MyProjectItemState extends State<_MyProjectItem> {
                 context,
               ).withValues(alpha: 0.7),
             ),
-            maxLines: value ? null : 4,
+            maxLines: value ? null : 3,
             overflow: value ? TextOverflow.visible : TextOverflow.ellipsis,
           ),
         );

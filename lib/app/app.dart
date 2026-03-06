@@ -25,9 +25,6 @@ class App extends StatelessWidget {
         bloc: getIt<AppThemeCubit>(),
         builder: (context, themeState) {
           return MaterialApp.router(
-            scrollBehavior: const MaterialScrollBehavior().copyWith(
-              scrollbars: false,
-            ),
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,

@@ -7,28 +7,25 @@ class MyProjectsTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        spacing: 12,
-        crossAxisAlignment: .start,
-        children: [
-          Text(
-            'My Projects',
-            style: AppTextStyle.sectionTitle.copyWith(
-              color: AppColors.getForeground(context),
-            ),
+    return Column(
+      spacing: 12,
+      crossAxisAlignment: .start,
+      children: [
+        Text(
+          'My Projects',
+          style: AppTextStyle.sectionTitle.copyWith(
+            color: AppColors.getForeground(context),
           ),
-          Container(
-            width: 150,
-            height: 6,
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(3),
-            ),
+        ),
+        Container(
+          width: 150,
+          height: 6,
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(3),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

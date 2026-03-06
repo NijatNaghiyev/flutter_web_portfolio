@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/main/main_cubit.dart';
+import 'package:flutter_web_portfolio/features/main/presentation/widgets/contact/contact_section.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/footer/footer_section.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/my_projects/my_projects_section.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/about_me/about_me_section.dart';
@@ -46,19 +47,25 @@ class _MainScreenState extends State<MainScreen> {
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) =>
                 _buildHeaderSliver,
-            body: const Scrollbar(
-              thumbVisibility: true,
-              interactive: true,
-              child: SingleChildScrollView(
-                primary: true,
-                child: Column(
-                  children: [
-                    HeaderMain(),
-                    AboutMeSection(),
-                    MySkillsSection(),
-                    MyProjectsSection(),
-                    FooterSection(),
-                  ],
+            body: ScrollConfiguration(
+              behavior: const MaterialScrollBehavior().copyWith(
+                scrollbars: false,
+              ),
+              child: const Scrollbar(
+                thumbVisibility: true,
+                interactive: true,
+                child: SingleChildScrollView(
+                  primary: true,
+                  child: Column(
+                    children: [
+                      HeaderMain(),
+                      AboutMeSection(),
+                      MySkillsSection(),
+                      MyProjectsSection(),
+                      ContactSection(),
+                      FooterSection(),
+                    ],
+                  ),
                 ),
               ),
             ),

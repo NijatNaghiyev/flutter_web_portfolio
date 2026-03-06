@@ -19,4 +19,9 @@ class AppAssets {
   static const String stateIcon = 'assets/svgs/state_icon.svg';
   static const String storeIcon = 'assets/svgs/store_icon.svg';
   static const String webIcon = 'assets/svgs/web_icon.svg';
+  static const String linkWebIcon = 'assets/svgs/link_web_icon.svg';
+  static const String linkGitIcon = 'assets/svgs/link_git_icon.svg';
+  static const String linkAppleIcon = 'assets/svgs/link_apple_icon.svg';
+  static const String linkAndroidIcon = 'assets/svgs/link_android_icon.svg';
+  static const String socialsIcon = 'assets/svgs/socials_icon.svg';
 }
