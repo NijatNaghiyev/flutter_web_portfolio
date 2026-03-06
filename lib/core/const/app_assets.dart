@@ -23,4 +23,5 @@ class AppAssets {
   static const String linkGitIcon = 'assets/svgs/link_git_icon.svg';
   static const String linkAppleIcon = 'assets/svgs/link_apple_icon.svg';
   static const String linkAndroidIcon = 'assets/svgs/link_android_icon.svg';
+  static const String socialsIcon = 'assets/svgs/socials_icon.svg';
 }

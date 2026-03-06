@@ -12,7 +12,7 @@ class MySkillsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       key: getIt<ScrollService>().skillsKey,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
       child: Flex(
         spacing: 16,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
