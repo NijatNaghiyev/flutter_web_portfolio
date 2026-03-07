@@ -276,6 +276,28 @@ Your site will be live at `https://your-project-id.web.app`
 
 ---
 
+## 🔄 Continuous Integration/Deployment (CI/CD)
+
+This project uses **GitHub Actions** for automated deployment to Firebase Hosting. When a pull request is merged to the `main` branch, the workflow automatically builds and deploys the application.
+
+### How It Works
+
+- **Trigger:** Automatically runs on merge to `main` branch
+- **Build:** Compiles Flutter web application
+- **Deploy:** Pushes build artifacts to Firebase Hosting
+- **Result:** Live site is updated automatically
+
+### Workflow Features
+
+✅ Automated testing and building  
+✅ Zero-downtime deployments  
+✅ Consistent build environment  
+✅ Deployment notifications  
+
+This CI/CD pipeline ensures that your portfolio is always up-to-date with the latest changes from the main branch without manual intervention.
+
+---
+
 ## 🎨 Customization
 
 ### Update Content
