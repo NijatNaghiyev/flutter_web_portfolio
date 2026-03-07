@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 
@@ -17,7 +19,11 @@ class _WorkWithMeButtonState extends State<WorkWithMeButton> {
     return FittedBox(
       fit: BoxFit.scaleDown,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          getIt<ScrollService>().scrollToKey(
+            key: getIt<ScrollService>().contactKey,
+          );
+        },
         onHover: (hovering) {
           setState(() {
             isHovered = hovering;
