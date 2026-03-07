@@ -84,7 +84,7 @@ class ContactBody extends StatelessWidget {
           ),
           subtitle: BlocSelector<MainCubit, MainState, ProfileEntity?>(
             selector: (state) {
-              return ProfileEntity();
+              return state.profile;
             },
             builder: (context, state) {
               if (state == null) return const SizedBox.shrink();
