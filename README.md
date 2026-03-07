@@ -276,6 +276,28 @@ Your site will be live at `https://your-project-id.web.app`
 
 ---
 
+## 🔄 Continuous Integration/Deployment (CI/CD)
+
+This project uses **GitHub Actions** for automated deployment to Firebase Hosting. When a pull request is merged to the `main` branch, the workflow automatically builds and deploys the application.
+
+### How It Works
+
+- **Trigger:** Automatically runs on merge to `main` branch
+- **Build:** Compiles Flutter web application
+- **Deploy:** Pushes build artifacts to Firebase Hosting
+- **Result:** Live site is updated automatically
+
+### Workflow Features
+
+✅ Automated testing and building  
+✅ Zero-downtime deployments  
+✅ Consistent build environment  
+✅ Deployment notifications  
+
+This CI/CD pipeline ensures that your portfolio is always up-to-date with the latest changes from the main branch without manual intervention.
+
+---
+
 ## 🎨 Customization
 
 ### Update Content
@@ -326,11 +348,52 @@ The portfolio is optimized for different screen sizes:
 
 ## 🧪 Testing
 
-Run tests:
+This project includes a comprehensive test suite covering unit tests, cubit/BLoC tests, and widget tests.
+
+### Test Structure
+
+```
+test/
+├── helpers/              # Test utilities and mock data
+├── unit/                 # Unit tests for entities
+├── cubit/                # State management tests
+└── widget/               # Widget and UI tests
+```
+
+### Test Categories
+
+- **Unit Tests** - Testing entities, utilities, and pure business logic
+- **Cubit Tests** - Testing state management with `bloc_test` and `mocktail`
+- **Widget Tests** - Testing UI components and interactions
+
+### Running Tests
 
 ```bash
+# Run all tests
 flutter test
+
+# Run specific test category
+flutter test test/unit
+flutter test test/cubit
+flutter test test/widget
+
+# Run specific test file
+flutter test test/cubit/app_theme_cubit_test.dart
+
+# Run with coverage
+flutter test --coverage
+
+# Generate coverage report (requires lcov)
+genhtml coverage/lcov.info -o coverage/html
+open coverage/html/index.html
 ```
+
+### Test Dependencies
+
+- `bloc_test` - Testing utilities for BLoC/Cubit
+- `mocktail` - Mocking library for Dart
+
+For detailed testing documentation, see [test/README.md](test/README.md).
 
 ---
 
