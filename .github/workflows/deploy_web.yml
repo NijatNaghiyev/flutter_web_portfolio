@@ -32,7 +32,7 @@ jobs:
           echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
 
       - name: Build Flutter Web
-        run: flutter build web --release
+        run: flutter build web --release --wasm
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
