@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/utils/app_logger.dart';
@@ -61,6 +64,13 @@ class DownloadCvButton extends StatelessWidget {
   }
 
   Future<void> onTap(BuildContext context) async {
+    unawaited(
+      getIt<AnalyticsService>().logEvent(
+        name: 'main_download_cv_click',
+        parameters: {'button_text': 'Download CV'},
+      ),
+    );
+
     final cvPath = context.read<MainCubit>().state.profile?.cvPath;
     if (cvPath == null) {
       AppLogger.warning('CV path is null');

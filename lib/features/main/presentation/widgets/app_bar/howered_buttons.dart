@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/cubits/drawer/drawer_cubit.dart';
 import 'package:flutter_web_portfolio/features/main/presentation/widgets/app_bar/hovered_section_title.dart';
@@ -25,6 +28,12 @@ class HoveredButtons extends StatelessWidget {
           HoveredSectionTitle(
             title: 'About',
             onTap: () {
+              unawaited(
+                getIt<AnalyticsService>().logEvent(
+                  name: 'main_about_click',
+                  parameters: {'button_text': 'About'},
+                ),
+              );
               context.read<DrawerCubit>().closeDrawer();
               getIt<ScrollService>().scrollToKey(
                 key: getIt<ScrollService>().aboutKey,
@@ -35,6 +44,12 @@ class HoveredButtons extends StatelessWidget {
           HoveredSectionTitle(
             title: 'Skills',
             onTap: () {
+              unawaited(
+                getIt<AnalyticsService>().logEvent(
+                  name: 'main_skills_click',
+                  parameters: {'button_text': 'Skills'},
+                ),
+              );
               context.read<DrawerCubit>().closeDrawer();
               getIt<ScrollService>().scrollToKey(
                 key: getIt<ScrollService>().skillsKey,
@@ -45,6 +60,12 @@ class HoveredButtons extends StatelessWidget {
           HoveredSectionTitle(
             title: 'Projects',
             onTap: () {
+              unawaited(
+                getIt<AnalyticsService>().logEvent(
+                  name: 'main_projects_click',
+                  parameters: {'button_text': 'Projects'},
+                ),
+              );
               context.read<DrawerCubit>().closeDrawer();
               getIt<ScrollService>().scrollToKey(
                 key: getIt<ScrollService>().projectsKey,
@@ -55,6 +76,12 @@ class HoveredButtons extends StatelessWidget {
           HoveredSectionTitle(
             title: 'Contact',
             onTap: () {
+              unawaited(
+                getIt<AnalyticsService>().logEvent(
+                  name: 'main_contact_click',
+                  parameters: {'button_text': 'Contact'},
+                ),
+              );
               context.read<DrawerCubit>().closeDrawer();
               getIt<ScrollService>().scrollToKey(
                 key: getIt<ScrollService>().contactKey,

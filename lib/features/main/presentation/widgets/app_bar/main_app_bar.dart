@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_web_portfolio/core/const/app_size.dart';
 import 'package:flutter_web_portfolio/core/const/app_strings.dart';
 import 'package:flutter_web_portfolio/core/extensions/context.dart';
 import 'package:flutter_web_portfolio/core/extensions/string.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/theme/cubit/app_theme_cubit.dart';
@@ -158,6 +160,15 @@ class _MainAppBarState extends State<MainAppBar> {
                 (mode) => PopupMenuItem(
                   value: mode,
                   onTap: () {
+                    unawaited(
+                      getIt<AnalyticsService>().logEvent(
+                        name: 'main_theme_change_click',
+                        parameters: {
+                          'button_text':
+                              'Change Theme to ${mode.name.firstLetterUpperCase}',
+                        },
+                      ),
+                    );
                     getIt<AppThemeCubit>().setTheme(
                       mode,
                     );
