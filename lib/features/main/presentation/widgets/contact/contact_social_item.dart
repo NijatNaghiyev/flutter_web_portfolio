@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
 import 'package:flutter_web_portfolio/core/utils/url_helper.dart';
@@ -29,6 +32,12 @@ class _ContactSocialItemState extends State<ContactSocialItem> {
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
         onTap: () {
+          unawaited(
+            getIt<AnalyticsService>().logEvent(
+              name: 'main_contact_social_click',
+              parameters: {'button_text': 'Contact ${widget.title}'},
+            ),
+          );
           getIt<UrlHelper>().openUrl(widget.link!);
         },
         child: Text(

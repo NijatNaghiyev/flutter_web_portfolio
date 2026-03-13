@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
@@ -23,6 +26,13 @@ class _ViewMyWorkState extends State<ViewMyWork> {
         scale: isHovered ? 1.08 : 1.0,
         child: GestureDetector(
           onTap: () {
+            unawaited(
+              getIt<AnalyticsService>().logEvent(
+                name: 'main_view_my_work_click',
+                parameters: {'button_text': 'View My Work'},
+              ),
+            );
+
             getIt<ScrollService>().scrollToKey(
               key: getIt<ScrollService>().projectsKey,
             );

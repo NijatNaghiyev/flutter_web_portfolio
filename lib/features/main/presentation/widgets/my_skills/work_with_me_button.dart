@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/app/di/injection.dart';
+import 'package:flutter_web_portfolio/core/services/analytics_service.dart';
 import 'package:flutter_web_portfolio/core/services/scroll_service.dart';
 import 'package:flutter_web_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_web_portfolio/core/theme/app_textstyle.dart';
@@ -20,6 +23,12 @@ class _WorkWithMeButtonState extends State<WorkWithMeButton> {
       fit: BoxFit.scaleDown,
       child: TextButton(
         onPressed: () {
+           unawaited(
+              getIt<AnalyticsService>().logEvent(
+                name: 'main_work_with_me_click',
+                parameters: {'button_text': 'Work with me'},
+              ),
+            );
           getIt<ScrollService>().scrollToKey(
             key: getIt<ScrollService>().contactKey,
           );
